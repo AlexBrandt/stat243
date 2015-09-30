@@ -176,7 +176,7 @@ summary_stats <- function(debate_block)
   return_vals$mean_word_length <- mean(rapply(words,nchar))
   return_vals$num_character_from_words <- sum(rapply(words,nchar))
   return_vals$number_of_words <- length(unlist(words))
-  #return_vals$buzzwords <- word_counts
+  return_vals$buzzwords <- word_counts
   #return_vals$db <- debate_block
   # Return all of the pertinent information for later printing
   return(return_vals)
