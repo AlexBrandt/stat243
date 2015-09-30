@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 SEP 2015 02:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 SEP 2015 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -578,329 +578,351 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 67.
 
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
 
-Package xcolor Warning: Incompatible color definition on input line 78.
-
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 80.
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 84.
-
-(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
-File: omscmtt.fd 
-)
-LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 84.
-
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 91--91
-[]    []\OT1/cmtt/m/n/10 if[] []((([][]toupper[][](list_of_strings[[i]])[] []==
-[] []list_of_strings[[i]])[] []&&[][] 
  []
 
 
-Overfull \hbox (55.73264pt too wide) in paragraph at lines 93--93
-[]      []\OT1/cmtt/m/it/10 # This is a "caps line" which doesn^^Mt contain use
-ful information about[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 77--80
+
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 98--98
-[]    []\OT1/cmtt/m/n/10 name[] []<-[] []str_match[][](list_of_strings[[i]],[][
-]regex[][]([][]"([A-Z]+):"[][]))[,[][]2[][]][][] 
- []
+Underfull \hbox (badness 10000) in paragraph at lines 77--80
 
-
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 102--102
-[]        []\OT1/cmtt/m/n/10 str_replace_all[][](current_block,[][]paste[][](cu
-rrent_name,[][]": "[][],[][]sep[][]=[][]""[][]),[][] 
- []
-
-
-Overfull \hbox (10.24731pt too wide) in paragraph at lines 179--179
-[][]\OT1/cmtt/m/n/10 "([:alpha:])(([:alpha:]|[:space:]|[:digit:]|\OMS/cmsy/m/n/
-10 n\OT1/cmtt/m/n/10 ^^M|,|-)*)(\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .|\OMS/cmsy
-/m/n/10 nn\OT1/cmtt/m/n/10 ?|\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 !)"[][])[][] 
- []
-
-
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 199--199
-[][]\OT1/cmtt/m/n/10 menu_url[][]=[][]"http://www.debates.org/index.php?page=de
-bate-transcripts"[][] 
- []
-
-
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 219--219
-[]  []\OT1/cmtt/m/n/10 print[][]([][]paste[][]([][]"The statistics for the firs
-t debate in"[][],year,[][]"..."[][]))[][] 
- []
-
-
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 220--220
-[]  []\OT1/cmtt/m/n/10 debate_blocks_list[[year]][] []<-[] []debate_summary[][]
-(my_debate_links[i])[][] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in LEHRER^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in OBAMA^^Ms
- speach is:"[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in ROMNEY^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in LEHRER^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in OBAMA^^Ms
- speach is:"[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in MCCAIN^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in LEHRER^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in KERRY^^Ms
- speach is:"[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in BUSH^^Ms 
-speach is:"[] 
- []
-
-
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in MODERATOR
-^^Ms speach is:"[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in GORE^^Ms 
-speach is:"[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in BUSH^^Ms 
-speach is:"[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in LEHRER^^M
-s speach is:"[] 
- []
-
-
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in CLINTON^^
-Ms speach is:"[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 576--576
-[]\OT1/cmtt/m/n/10 ## [1] "The number of characters (in the words) in DOLE^^Ms 
-speach is:"[] 
  []
 
 [1
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \vbox (badness 10000) detected at line 577
+
+Package xcolor Warning: Incompatible color definition on input line 82.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 84.
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 96.
+
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
+File: omscmtt.fd 
+)
+LaTeX Font Info:    Font shape `OMS/cmtt/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 129--129
+[]    []\OT1/cmtt/m/n/10 if[] []((([][]toupper[][](list_of_strings[[i]])[] []==
+[] []list_of_strings[[i]])[] []&&[][] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 141--141
+[]    []\OT1/cmtt/m/n/10 name[] []<-[] []str_match[][](list_of_strings[[i]],[][
+]regex[][]([][]"([A-Z]+):"[][]))[,[][]2[][]][][] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 145--145
+[]        []\OT1/cmtt/m/n/10 str_replace_all[][](current_block,[][]paste[][](cu
+rrent_name,[][]": "[][],[][]sep[][]=[][]""[][]),[][] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 207--207
+[]  []\OT1/cmtt/m/n/10 word_counts[] []<-[] []lapply[][](patterns,[] []function
+[][]([][]me[][])[] []str_count[][](to_analyze,me))[][] 
+ []
+
+
+Overfull \hbox (6.497pt too wide) in paragraph at lines 220--220
+[]  []\OT1/cmtt/m/n/10 ^^M(([:alpha:]+(\OMS/cmsy/m/n/10 n\OT1/cmtt/m/n/10 ^^M([
+:alpha:]+)?)?)|([:digit:]+(,([:digit:]+)?)?))^^M[][])[][] 
+ []
+
+
+Overfull \hbox (201.49635pt too wide) in paragraph at lines 222--222
+[]  []\OT1/cmtt/m/n/10 "([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|^^M|,|-|\OMS
+/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 $|/|\OMS/cmsy/m/n/10 nnn\OT1/cmtt/m/n/10 "|(\OM
+S/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .[A-Za-z]))*((\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n
+/10 .\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .
+)|\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .|\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 ?|\
+OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 !)"[][])[][] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 226--226
+[]  []\OT1/cmtt/m/n/10 return_vals[][]$[][]num_character_from_words[] []<-[] []
+sum[][]([][]rapply[][](words,nchar))[][] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 247--247
+[][]\OT1/cmtt/m/n/10 menu_url[][]=[][]"http://www.debates.org/index.php?page=de
+bate-transcripts"[][] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 253--253
+[][]\OT1/cmtt/m/n/10 year_reg[] []<-[] []paste[][]([][]"("[][],[][]paste[][]([]
+[]paste[][](years,[][]collapse[][]=[][]"|"[][]),[][]").+(First)"[][] 
+ []
+
+
+Overfull \hbox (8.48305pt too wide) in paragraph at lines 264--264
+[][]\OT1/cmtt/m/it/10 # Using a simple for loop to print with a nice index for 
+the years.[][] 
+ []
+
+
+Overfull \hbox (13.733pt too wide) in paragraph at lines 266--266
+[][]\OT1/cmtt/m/it/10 # printed out with the summary stats.  I thought that wou
+ld be fine [][] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 269--269
+[][]\OT1/cmtt/m/n/10 debate_blocks_statistics[] []<-[] []lapply[][](my_debate_l
+inks,debate_summary)[][] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 273.
+
+
+Overfull \hbox (248.24483pt too wide) in paragraph at lines 273--274
+[]\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
+org/index.php?page=october-3-2012-debate-transcript)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 275.
+
+
+Overfull \hbox (195.74529pt too wide) in paragraph at lines 275--276
+[]\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
+org/index.php?page=2008-debate-transcript)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Overfull \hbox (263.99469pt too wide) in paragraph at lines 277--278
+[]\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
+org/index.php?page=september-30-2004-debate-transcript)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 279.
+
+
+Overfull \hbox (211.49515pt too wide) in paragraph at lines 279--280
+[]\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
+org/index.php?page=october-3-2000-transcript)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 281.
+
+
+Overfull \hbox (248.24483pt too wide) in paragraph at lines 281--281
+[]\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
+org/index.php?page=october-6-1996-debate-transcript)[] 
  []
 
 [2]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 [3]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
-[4] [5]
-Underfull \vbox (badness 10000) detected at line 577
- []
-
-
-Underfull \vbox (badness 10000) detected at line 577
- []
-
-[6]
-Underfull \vbox (badness 10000) detected at line 577
+[4]
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
+ []
+
+[5] [6]
+Underfull \vbox (badness 10000) detected at line 526
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 [7]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 [8]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 [9]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \vbox (badness 10000) detected at line 526
  []
 
 [10]
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \hbox (badness 10000) in paragraph at lines 529--532
+
  []
 
 
-Underfull \vbox (badness 10000) detected at line 577
+Underfull \hbox (badness 10000) in paragraph at lines 529--532
+
  []
 
 [11]
-Overfull \hbox (2.20631pt too wide) in paragraph at lines 580--580
-[]\OT1/cmr/bx/n/14.4 Practice with S4 -- Il-lus-trat-ing a Ran-dom Walk 
+
+Package xcolor Warning: Incompatible color definition on input line 538.
+
+
+Overfull \hbox (29.48286pt too wide) in paragraph at lines 540--540
+[][]\OT1/cmtt/m/it/10 # While I didn^^Mt work with any other students on this q
+uestion, I found[][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 583.
-
-
-Overfull \hbox (60.98259pt too wide) in paragraph at lines 621--621
-[][]\OT1/cmtt/m/it/10 # Found "OOP in R" (http://practicalcomputing.org/node/80
-) to be very useful.[][] 
+Overfull \hbox (24.23291pt too wide) in paragraph at lines 541--541
+[][]\OT1/cmtt/m/it/10 # the S4 classes a little complicated, and consulted prin
+t/web sources[][] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 622--622
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 542--542
+[][]\OT1/cmtt/m/it/10 # pretty extensively.  As always, I attempted to do so in
+ a way that [][] 
+ []
+
+
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 543--543
+[][]\OT1/cmtt/m/it/10 # forced my own understanding (no copy + paste), but thes
+e were great[][] 
+ []
+
+
+Overfull \hbox (24.23291pt too wide) in paragraph at lines 547--547
+[][]\OT1/cmtt/m/it/10 # https://cran.r-project.org/doc/contrib/Genolini-S4tutor
+ialV0-5en.pdf[][] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 590--590
 [][]\OT1/cmtt/m/n/10 setGeneric[][]([][]"start<-"[][],[] []function[][]([][]sel
 f[][],[] []value[][])[] []standardGeneric[][]([][]"start<-"[][]))[][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 668.
+Package xcolor Warning: Incompatible color definition on input line 643.
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 668--668
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 643--643
 []\OT1/cmtt/m/it/10 ## Creating a generic function for 'plot' from package 'gra
 phics' in
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 690.
+Package xcolor Warning: Incompatible color definition on input line 669.
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 690--690
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 669--669
 []\OT1/cmtt/m/it/10 ## Creating a generic function for 'print' from package 'ba
 se' in the
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 699.
+Package xcolor Warning: Incompatible color definition on input line 679.
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 699--699
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 679--679
 []\OT1/cmtt/m/it/10 ## Creating a new generic function for 'simulate' in the gl
 obal environment[] 
  []
 
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 721--721
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 703--703
 [][]\OT1/cmtt/m/n/10 my_walk[] []<-[] []new[][]([][]"rw"[][],[] []start[][]=[][
 ]c[][]([][]1[][],[][]1[][]),[][]steps[][]=[][]1000[][],[][]trajectory_recording
 [][]=[][]FALSE[][])[][] 
  []
 
 
-Overfull \hbox (24.23291pt too wide) in paragraph at lines 722--722
-[][]\OT1/cmtt/m/it/10 # To circumvent this, I would need to use the "assign" fu
-nction, which[][] 
+Overfull \hbox (39.98277pt too wide) in paragraph at lines 704--704
+[][]\OT1/cmtt/m/it/10 # We initialize the walk with the simulate() method -- I 
+don^^Mt love this.[][] 
  []
 
 
-Overfull \hbox (34.73282pt too wide) in paragraph at lines 724--724
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 705--705
+[][]\OT1/cmtt/m/it/10 # But to circumvent, I would need to use the "assign" fun
+ction, which[][] 
+ []
+
+
+Overfull \hbox (34.73282pt too wide) in paragraph at lines 707--707
 [][]\OT1/cmtt/m/it/10 # (https://cran.r-project.org/doc/contrib/Genolini-S4tuto
 rialV0-5en.pdf)[][] 
  []
 
-[12] [13] [14] <figure/unnamed-chunk-2-1.pdf, id=54, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+[12] [13] [14] <figure/external-code-1-1.pdf, id=54, 505.89pt x 505.89pt>
+File: figure/external-code-1-1.pdf Graphic file (type pdf)
 
-<use figure/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-2-1.pdf used on input line 735.
+<use figure/external-code-1-1.pdf>
+Package pdftex.def Info: figure/external-code-1-1.pdf used on input line 720.
 (pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 735--736
+Overfull \hbox (15.0pt too wide) in paragraph at lines 720--721
 [][] 
  []
 
-[15] <figure/unnamed-chunk-2-2.pdf, id=58, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-2-2.pdf Graphic file (type pdf)
+[15] <figure/external-code-1-2.pdf, id=58, 505.89pt x 505.89pt>
+File: figure/external-code-1-2.pdf Graphic file (type pdf)
 
-<use figure/unnamed-chunk-2-2.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-2-2.pdf used on input line 741.
+<use figure/external-code-1-2.pdf>
+Package pdftex.def Info: figure/external-code-1-2.pdf used on input line 729.
 (pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 741--742
+Overfull \hbox (15.0pt too wide) in paragraph at lines 729--730
 [][] 
  []
 
-[16 <./figure/unnamed-chunk-2-1.pdf>] [17 <./figure/unnamed-chunk-2-2.pdf>]
+[16 <./figure/external-code-1-1.pdf>] [17 <./figure/external-code-1-2.pdf>]
 (./ps3_solutions.aux) ) 
 Here is how much of TeX's memory you used:
- 4125 strings out of 493315
- 56758 string characters out of 6137904
- 268748 words of memory out of 5000000
- 7522 multiletter control sequences out of 15000+600000
+ 4127 strings out of 493315
+ 56792 string characters out of 6137904
+ 186229 words of memory out of 5000000
+ 7524 multiletter control sequences out of 15000+600000
  7616 words of font info for 28 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,38p,1232b,290s stack positions out of 30000i,500n,10000p,200000b,80000s
+ 38i,6n,35p,1113b,317s stack positions out of 30000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmitt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
@@ -909,10 +931,10 @@ onts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb>
-Output written on ps3_solutions.pdf (17 pages, 163350 bytes).
+Output written on ps3_solutions.pdf (17 pages, 171380 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
