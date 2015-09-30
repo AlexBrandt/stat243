@@ -218,6 +218,11 @@ Finally, the summary\_stats function builds a list, indexed by the various value
   \hlcom{# written numbers ("400,000") as one word, when possible.}
   \hlstd{words} \hlkwb{<-} \hlkwd{str_extract_all}\hlstd{(to_analyze,}
   \hlstr{'(([:alpha:]+(\textbackslash{}'([:alpha:]+)?)?)|([:digit:]+(,([:digit:]+)?)?))'}\hlstd{)}
+  \hlcom{# I couldn't get this onto one line and have it functional.}
+  \hlcom{# It is split here for reference:}
+  \hlcom{# "([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|'|,|}
+  \hlcom{# -|\textbackslash{}\textbackslash{}$|/|\textbackslash{}\textbackslash{}\textbackslash{}"|(\textbackslash{}\textbackslash{}.[A-Za-z]))*((\textbackslash{}\textbackslash{}.\textbackslash{}\textbackslash{}.\textbackslash{}\textbackslash{}.)}
+  \hlcom{# |\textbackslash{}\textbackslash{}.|\textbackslash{}\textbackslash{}?|\textbackslash{}\textbackslash{}!)")}
   \hlstd{sentence} \hlkwb{<-} \hlkwd{str_extract_all}\hlstd{(to_analyze,}
   \hlstr{"([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|'|,|-|\textbackslash{}\textbackslash{}$|/|\textbackslash{}\textbackslash{}\textbackslash{}"|(\textbackslash{}\textbackslash{}.[A-Za-z]))*((\textbackslash{}\textbackslash{}.\textbackslash{}\textbackslash{}.\textbackslash{}\textbackslash{}.)|\textbackslash{}\textbackslash{}.|\textbackslash{}\textbackslash{}?|\textbackslash{}\textbackslash{}!)"}\hlstd{)}
   \hlcom{#return_vals$my_words <- words}

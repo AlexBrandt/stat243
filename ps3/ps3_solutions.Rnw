@@ -164,6 +164,11 @@ summary_stats <- function(debate_block)
   # written numbers ("400,000") as one word, when possible.
   words <- str_extract_all(to_analyze,
   '(([:alpha:]+(\'([:alpha:]+)?)?)|([:digit:]+(,([:digit:]+)?)?))')
+  # I couldn't get this onto one line and have it functional.
+  # It is split here for reference:
+  # "([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|'|,|
+  # -|\\$|/|\\\"|(\\.[A-Za-z]))*((\\.\\.\\.)
+  # |\\.|\\?|\\!)")
   sentence <- str_extract_all(to_analyze,
   "([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|'|,|-|\\$|/|\\\"|(\\.[A-Za-z]))*((\\.\\.\\.)|\\.|\\?|\\!)")
   #return_vals$my_words <- words

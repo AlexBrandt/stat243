@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 SEP 2015 13:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 SEP 2015 13:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -643,7 +643,7 @@ Overfull \hbox (6.497pt too wide) in paragraph at lines 220--220
  []
 
 
-Overfull \hbox (201.49635pt too wide) in paragraph at lines 222--222
+Overfull \hbox (201.49635pt too wide) in paragraph at lines 227--227
 []  []\OT1/cmtt/m/n/10 "([:alpha:])(|[:alpha:]|[:space:]|[:digit:]|^^M|,|-|\OMS
 /cmsy/m/n/10 nn\OT1/cmtt/m/n/10 $|/|\OMS/cmsy/m/n/10 nnn\OT1/cmtt/m/n/10 "|(\OM
 S/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 .[A-Za-z]))*((\OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n
@@ -653,240 +653,240 @@ OMS/cmsy/m/n/10 nn\OT1/cmtt/m/n/10 !)"[][])[][]
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 226--226
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 231--231
 []  []\OT1/cmtt/m/n/10 return_vals[][]$[][]num_character_from_words[] []<-[] []
 sum[][]([][]rapply[][](words,nchar))[][] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 247--247
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 252--252
 [][]\OT1/cmtt/m/n/10 menu_url[][]=[][]"http://www.debates.org/index.php?page=de
 bate-transcripts"[][] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 253--253
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 258--258
 [][]\OT1/cmtt/m/n/10 year_reg[] []<-[] []paste[][]([][]"("[][],[][]paste[][]([]
 []paste[][](years,[][]collapse[][]=[][]"|"[][]),[][]").+(First)"[][] 
  []
 
 
-Overfull \hbox (8.48305pt too wide) in paragraph at lines 264--264
+Overfull \hbox (8.48305pt too wide) in paragraph at lines 269--269
 [][]\OT1/cmtt/m/it/10 # Using a simple for loop to print with a nice index for 
 the years.[][] 
  []
 
 
-Overfull \hbox (13.733pt too wide) in paragraph at lines 266--266
+Overfull \hbox (13.733pt too wide) in paragraph at lines 271--271
 [][]\OT1/cmtt/m/it/10 # printed out with the summary stats.  I thought that wou
 ld be fine [][] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 269--269
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 274--274
 [][]\OT1/cmtt/m/n/10 debate_blocks_statistics[] []<-[] []lapply[][](my_debate_l
 inks,debate_summary)[][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 273.
+Package xcolor Warning: Incompatible color definition on input line 278.
 
 
-Overfull \hbox (248.24483pt too wide) in paragraph at lines 273--274
+Overfull \hbox (248.24483pt too wide) in paragraph at lines 278--279
 []\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
 org/index.php?page=october-3-2012-debate-transcript)[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 275.
+Package xcolor Warning: Incompatible color definition on input line 280.
 
 
-Overfull \hbox (195.74529pt too wide) in paragraph at lines 275--276
+Overfull \hbox (195.74529pt too wide) in paragraph at lines 280--281
 []\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
 org/index.php?page=2008-debate-transcript)[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 277.
+Package xcolor Warning: Incompatible color definition on input line 282.
 
 
-Overfull \hbox (263.99469pt too wide) in paragraph at lines 277--278
+Overfull \hbox (263.99469pt too wide) in paragraph at lines 282--283
 []\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
 org/index.php?page=september-30-2004-debate-transcript)[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 279.
+Package xcolor Warning: Incompatible color definition on input line 284.
 
 
-Overfull \hbox (211.49515pt too wide) in paragraph at lines 279--280
+Overfull \hbox (211.49515pt too wide) in paragraph at lines 284--285
 []\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
 org/index.php?page=october-3-2000-transcript)[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 281.
+Package xcolor Warning: Incompatible color definition on input line 286.
 
 
-Overfull \hbox (248.24483pt too wide) in paragraph at lines 281--281
+Overfull \hbox (248.24483pt too wide) in paragraph at lines 286--286
 []\OT1/cmtt/m/n/10 ## Warning: closing unused connection 5 (http://www.debates.
 org/index.php?page=october-6-1996-debate-transcript)[] 
  []
 
 [2]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [3]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [4]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [5] [6]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [7]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [8]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [9]
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 
-Underfull \vbox (badness 10000) detected at line 526
+Underfull \vbox (badness 10000) detected at line 531
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 529--532
+Underfull \hbox (badness 10000) in paragraph at lines 534--537
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--532
+Underfull \hbox (badness 10000) in paragraph at lines 534--537
 
  []
 
 [11]
 
-Package xcolor Warning: Incompatible color definition on input line 538.
+Package xcolor Warning: Incompatible color definition on input line 543.
 
 
-Overfull \hbox (29.48286pt too wide) in paragraph at lines 540--540
+Overfull \hbox (29.48286pt too wide) in paragraph at lines 545--545
 [][]\OT1/cmtt/m/it/10 # While I didn^^Mt work with any other students on this q
 uestion, I found[][] 
  []
 
 
-Overfull \hbox (24.23291pt too wide) in paragraph at lines 541--541
+Overfull \hbox (24.23291pt too wide) in paragraph at lines 546--546
 [][]\OT1/cmtt/m/it/10 # the S4 classes a little complicated, and consulted prin
 t/web sources[][] 
  []
 
 
-Overfull \hbox (18.98296pt too wide) in paragraph at lines 542--542
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 547--547
 [][]\OT1/cmtt/m/it/10 # pretty extensively.  As always, I attempted to do so in
  a way that [][] 
  []
 
 
-Overfull \hbox (18.98296pt too wide) in paragraph at lines 543--543
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 548--548
 [][]\OT1/cmtt/m/it/10 # forced my own understanding (no copy + paste), but thes
 e were great[][] 
  []
 
 
-Overfull \hbox (24.23291pt too wide) in paragraph at lines 547--547
+Overfull \hbox (24.23291pt too wide) in paragraph at lines 552--552
 [][]\OT1/cmtt/m/it/10 # https://cran.r-project.org/doc/contrib/Genolini-S4tutor
 ialV0-5en.pdf[][] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 590--590
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 595--595
 [][]\OT1/cmtt/m/n/10 setGeneric[][]([][]"start<-"[][],[] []function[][]([][]sel
 f[][],[] []value[][])[] []standardGeneric[][]([][]"start<-"[][]))[][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 643.
+Package xcolor Warning: Incompatible color definition on input line 648.
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 643--643
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 648--648
 []\OT1/cmtt/m/it/10 ## Creating a generic function for 'plot' from package 'gra
 phics' in
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 674.
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 669--669
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 674--674
 []\OT1/cmtt/m/it/10 ## Creating a generic function for 'print' from package 'ba
 se' in the
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 679.
+Package xcolor Warning: Incompatible color definition on input line 684.
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 679--679
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 684--684
 []\OT1/cmtt/m/it/10 ## Creating a new generic function for 'simulate' in the gl
 obal environment[] 
  []
 
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 703--703
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 708--708
 [][]\OT1/cmtt/m/n/10 my_walk[] []<-[] []new[][]([][]"rw"[][],[] []start[][]=[][
 ]c[][]([][]1[][],[][]1[][]),[][]steps[][]=[][]1000[][],[][]trajectory_recording
 [][]=[][]FALSE[][])[][] 
  []
 
 
-Overfull \hbox (39.98277pt too wide) in paragraph at lines 704--704
+Overfull \hbox (39.98277pt too wide) in paragraph at lines 709--709
 [][]\OT1/cmtt/m/it/10 # We initialize the walk with the simulate() method -- I 
 don^^Mt love this.[][] 
  []
 
 
-Overfull \hbox (18.98296pt too wide) in paragraph at lines 705--705
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 710--710
 [][]\OT1/cmtt/m/it/10 # But to circumvent, I would need to use the "assign" fun
 ction, which[][] 
  []
 
 
-Overfull \hbox (34.73282pt too wide) in paragraph at lines 707--707
+Overfull \hbox (34.73282pt too wide) in paragraph at lines 712--712
 [][]\OT1/cmtt/m/it/10 # (https://cran.r-project.org/doc/contrib/Genolini-S4tuto
 rialV0-5en.pdf)[][] 
  []
@@ -895,10 +895,10 @@ rialV0-5en.pdf)[][]
 File: figure/external-code-1-1.pdf Graphic file (type pdf)
 
 <use figure/external-code-1-1.pdf>
-Package pdftex.def Info: figure/external-code-1-1.pdf used on input line 720.
+Package pdftex.def Info: figure/external-code-1-1.pdf used on input line 725.
 (pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 720--721
+Overfull \hbox (15.0pt too wide) in paragraph at lines 725--726
 [][] 
  []
 
@@ -906,10 +906,10 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 720--721
 File: figure/external-code-1-2.pdf Graphic file (type pdf)
 
 <use figure/external-code-1-2.pdf>
-Package pdftex.def Info: figure/external-code-1-2.pdf used on input line 729.
+Package pdftex.def Info: figure/external-code-1-2.pdf used on input line 734.
 (pdftex.def)             Requested size: 345.0pt x 345.00414pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 729--730
+Overfull \hbox (15.0pt too wide) in paragraph at lines 734--735
 [][] 
  []
 
@@ -918,7 +918,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 729--730
 Here is how much of TeX's memory you used:
  4127 strings out of 493315
  56792 string characters out of 6137904
- 186229 words of memory out of 5000000
+ 186620 words of memory out of 5000000
  7524 multiletter control sequences out of 15000+600000
  7616 words of font info for 28 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -931,7 +931,7 @@ onts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb>
-Output written on ps3_solutions.pdf (17 pages, 171380 bytes).
+Output written on ps3_solutions.pdf (17 pages, 172061 bytes).
 PDF statistics:
  101 PDF objects out of 1000 (max. 8388607)
  70 compressed objects within 1 object stream
