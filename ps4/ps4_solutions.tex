@@ -1,0 +1,384 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+\title{Problem Set 4}
+\author{Alexander Brandt\\SID: 24092167}
+\date{October 14 2015}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\maketitle
+
+\section{}
+
+To discover the source of error, I used the debug() function to step through the tmp() function.  The .  I realized that the loaded seed was not being applied to the global environment, so I exported the loaded tmp.Rda data into the global enivronment with the envir variable and the globalenv() function.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+\hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.8966972
+\end{verbatim}
+\begin{alltt}
+\hlkwd{save}\hlstd{(.Random.seed,} \hlkwc{file} \hlstd{=} \hlstr{'tmp.Rda'}\hlstd{)}
+\hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.2655087
+\end{verbatim}
+\begin{alltt}
+\hlkwd{load}\hlstd{(}\hlstr{'tmp.Rda'}\hlstd{)}
+\hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.2655087
+\end{verbatim}
+\begin{alltt}
+\hlstd{tmp} \hlkwb{<-} \hlkwa{function}\hlstd{() \{}
+  \hlcom{# Added globalenv() to solve the issue}
+  \hlkwd{load}\hlstd{(}\hlstr{'tmp.Rda'}\hlstd{,}\hlkwc{envir} \hlstd{=} \hlkwd{globalenv}\hlstd{())}
+  \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+\hlstd{\}}
+\hlkwd{tmp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.2655087
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{}
+
+Here, to perform the calcuation in the log scale, I use a the standard log additive identity, with a special method for corner cases.  By allowing k to equal an int, or a range, so it can return a vector of values.  This is summed in both methods, with a timer, to show that the non-vector and vector answers are the same, though the vectorized expression is much, much faster. 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{denominator} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{k}\hlstd{,}\hlkwc{n}\hlstd{,}\hlkwc{p}\hlstd{,}\hlkwc{phi}\hlstd{) \{}
+  \hlstd{a} \hlkwb{<-} \hlkwd{lchoose}\hlstd{(n,k);}
+  \hlstd{b} \hlkwb{<-} \hlstd{k}\hlopt{*}\hlkwd{log}\hlstd{(k)} \hlopt{+} \hlstd{(n}\hlopt{-}\hlstd{k)}\hlopt{*}\hlkwd{log}\hlstd{(n}\hlopt{-}\hlstd{k)} \hlopt{-} \hlstd{n}\hlopt{*}\hlkwd{log}\hlstd{(n)}
+  \hlstd{c} \hlkwb{<-} \hlstd{phi} \hlopt{*} \hlstd{(n}\hlopt{*}\hlkwd{log}\hlstd{(n)} \hlopt{-} \hlstd{k}\hlopt{*}\hlkwd{log}\hlstd{(k)} \hlopt{-} \hlstd{((n}\hlopt{-}\hlstd{k)}\hlopt{*}\hlkwd{log}\hlstd{(n}\hlopt{-}\hlstd{k)));}
+  \hlstd{d} \hlkwb{<-} \hlstd{(k}\hlopt{*}\hlstd{phi)}\hlopt{*}\hlkwd{log}\hlstd{(p);}
+  \hlstd{e} \hlkwb{<-} \hlstd{(n}\hlopt{-}\hlstd{k)}\hlopt{*}\hlstd{phi}\hlopt{*}\hlkwd{log}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{p);}
+  \hlkwd{return}\hlstd{(}\hlkwd{exp}\hlstd{(a} \hlopt{+} \hlstd{b} \hlopt{+} \hlstd{c} \hlopt{+} \hlstd{d} \hlopt{+} \hlstd{e))}
+\hlstd{\}}
+
+\hlcom{# The "corner cases" where k=0 or k=n.}
+\hlstd{denominator_cc} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{k}\hlstd{,}\hlkwc{n}\hlstd{,}\hlkwc{p}\hlstd{,}\hlkwc{phi}\hlstd{) \{}
+  \hlstd{a} \hlkwb{<-} \hlkwd{lchoose}\hlstd{(n,k);}
+  \hlstd{b} \hlkwb{<-} \hlkwd{log}\hlstd{(}\hlnum{1}\hlstd{)}
+  \hlstd{c} \hlkwb{<-} \hlstd{phi} \hlopt{*} \hlkwd{log}\hlstd{(}\hlnum{1}\hlstd{);}
+  \hlstd{d} \hlkwb{<-} \hlstd{(k}\hlopt{*}\hlstd{phi)}\hlopt{*}\hlkwd{log}\hlstd{(p);}
+  \hlstd{e} \hlkwb{<-} \hlstd{(n}\hlopt{-}\hlstd{k)}\hlopt{*}\hlstd{phi}\hlopt{*}\hlkwd{log}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{p);}
+  \hlkwd{return}\hlstd{(}\hlkwd{exp}\hlstd{(a} \hlopt{+} \hlstd{b} \hlopt{+} \hlstd{c} \hlopt{+} \hlstd{d} \hlopt{+} \hlstd{e))}
+\hlstd{\}}
+
+\hlstd{N} \hlkwb{<-} \hlnum{2000}
+\hlstd{a} \hlkwb{<-} \hlkwd{sequence}\hlstd{(N}\hlopt{-}\hlnum{1}\hlstd{)}
+
+\hlcom{# 2a)}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{v1} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(a,denominator,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{))}
+\hlkwd{sum}\hlstd{(v1)} \hlopt{+} \hlkwd{denominator_cc}\hlstd{(}\hlkwc{k}\hlstd{=}\hlnum{0}\hlstd{,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{)} \hlopt{+}
+  \hlkwd{denominator_cc}\hlstd{(}\hlkwc{k}\hlstd{=N,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.414436
+\end{verbatim}
+\begin{alltt}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.019   0.002   0.021
+\end{verbatim}
+\begin{alltt}
+\hlcom{# 2b) FULLY VECTORIZED!}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{v2} \hlkwb{<-} \hlkwd{denominator}\hlstd{(a,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{)}
+\hlkwd{sum}\hlstd{(v2)} \hlopt{+} \hlkwd{denominator_cc}\hlstd{(}\hlkwc{k}\hlstd{=}\hlnum{0}\hlstd{,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{)} \hlopt{+}
+  \hlkwd{denominator_cc}\hlstd{(}\hlkwc{k}\hlstd{=N,}\hlkwc{n}\hlstd{=N,}\hlkwc{p}\hlstd{=}\hlnum{0.3}\hlstd{,}\hlkwc{phi}\hlstd{=}\hlnum{0.5}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.414436
+\end{verbatim}
+\begin{alltt}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.003   0.000   0.003
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{}
+
+Here we construct a one line solution, and an ``optimized'' solution for the problem of weighted linear addition of the observations.  The comments are useful in comparing the two approaches, but one is a more "brute force" method of calcuating the sums vector, and the other attempts to use a spare matrix with matrix multiplication to construct the sums.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Question 3}
+
+\hlcom{# Import the matrix library that allows for a sparse matrix.}
+\hlcom{# Otherwise, it would overwhelm even powerful RAM systems.}
+
+\hlkwd{library}\hlstd{(Matrix)}
+\hlstd{mmrda} \hlkwb{<-} \hlstr{"~/Dropbox/solutions_github/stat243/ps4/mixedMember.Rda"}
+\hlkwd{load}\hlstd{(mmrda)}
+
+\hlcom{# 3a)}
+
+\hlcom{# In the "one line" sapply function, the weights are applied}
+\hlcom{# to the mu's given by a set of id's in the IDsX object.}
+
+\hlstd{my_sums_A} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsA),}
+                    \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{)} \hlkwd{sum}\hlstd{(wgtsA[[i]]} \hlopt{*} \hlstd{muA[IDsA[[i]]]))}
+\hlstd{my_sums_B} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsB),}
+                    \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{)} \hlkwd{sum}\hlstd{(wgtsB[[i]]} \hlopt{*} \hlstd{muB[IDsB[[i]]]))}
+
+\hlcom{# 3b)}
+
+\hlcom{# Here, a "selection" matrix is created, where each weight is}
+\hlcom{# built into the jth index for the ith row, and then the two }
+\hlcom{# matricies are multiplied together to create a linear algebra}
+\hlcom{# solution for the problem.  This method gives about a two }
+\hlcom{# order of magnitude speed up for both 3a and 3b.}
+
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{my_sums_A} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsA),}
+                    \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{)} \hlkwd{sum}\hlstd{(wgtsA[[i]]} \hlopt{*} \hlstd{muA[IDsA[[i]]]))}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.191   0.005   0.197
+\end{verbatim}
+\begin{alltt}
+\hlstd{selection_matrix_A} \hlkwb{<-} \hlkwd{Matrix}\hlstd{(}\hlnum{0}\hlstd{,}
+                             \hlkwc{nrow}\hlstd{=}\hlkwd{length}\hlstd{(IDsA),}
+                             \hlkwc{ncol}\hlstd{=}\hlkwd{length}\hlstd{(muA),}\hlkwc{sparse}\hlstd{=}\hlnum{TRUE}\hlstd{)}
+
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsA)))}
+\hlstd{\{}
+  \hlstd{selection_matrix_A[i,IDsA[[i]]]} \hlkwb{<-} \hlstd{wgtsA[[i]]}
+\hlstd{\}}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{my_sums_v2_A} \hlkwb{<-} \hlstd{selection_matrix_A} \hlopt{%*%} \hlstd{muA}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.004   0.000   0.005
+\end{verbatim}
+\begin{alltt}
+\hlkwd{head}\hlstd{(my_sums_A)}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.53997057 -0.68233057 -0.40414341 -0.24803496  0.44062079  0.03546354
+\end{verbatim}
+\begin{alltt}
+\hlkwd{head}\hlstd{(}\hlkwd{unlist}\hlstd{(my_sums_v2_A[,}\hlnum{1}\hlstd{]))}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.53997057 -0.68233057 -0.40414341 -0.24803496  0.44062079  0.03546354
+\end{verbatim}
+\begin{alltt}
+\hlcom{# 3c)}
+
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{my_sums_B} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsB),}
+                    \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{)} \hlkwd{sum}\hlstd{(wgtsB[[i]]} \hlopt{*} \hlstd{muB[IDsB[[i]]]))}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.179   0.004   0.184
+\end{verbatim}
+\begin{alltt}
+\hlstd{selection_matrix_B} \hlkwb{<-} \hlkwd{Matrix}\hlstd{(}\hlnum{0}\hlstd{,}
+                             \hlkwc{nrow}\hlstd{=}\hlkwd{length}\hlstd{(IDsA),}
+                             \hlkwc{ncol}\hlstd{=}\hlkwd{length}\hlstd{(muB),}\hlkwc{sparse}\hlstd{=}\hlnum{TRUE}\hlstd{)}
+
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(IDsA)))}
+\hlstd{\{}
+  \hlstd{selection_matrix_B[i,IDsB[[i]]]} \hlkwb{<-} \hlstd{wgtsB[[i]]}
+\hlstd{\}}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{my_sums_v2_B} \hlkwb{<-} \hlstd{selection_matrix_B} \hlopt{%*%} \hlstd{muB}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\begin{verbatim}
+##    user  system elapsed 
+##   0.003   0.001   0.004
+\end{verbatim}
+\begin{alltt}
+\hlkwd{head}\hlstd{(my_sums_B)}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.4496267 -0.3697111 -0.2104093 -0.3426966 -0.3874494  0.6585238
+\end{verbatim}
+\begin{alltt}
+\hlkwd{head}\hlstd{(}\hlkwd{unlist}\hlstd{(my_sums_v2_B[,}\hlnum{1}\hlstd{]))}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.4496267 -0.3697111 -0.2104093 -0.3426966 -0.3874494  0.6585238
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{}
+
+Here we use the debug feature along with the mem\_used and object\_size methods from pryr to examine the memory requirements to construct our data, as well as the memory usage withing the lm method.  We find that there is some bloat given various attributes from the objects using the attributes function, and then suggest some attributes that might be pared away to minimize the memory usage (such as the names attribute, which is effectively redundant).
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Question 4}
+
+\hlkwd{library}\hlstd{(pryr)}
+
+\hlcom{# A great option is mem_change and object_size from pryr in the following segments}
+\hlcom{# the command sort(sapply(ls(),function(x)\{object_size(get(x))\})) ain't a bad way}
+\hlcom{# of sorting it out}
+
+\hlcom{# Size of N_pt4 is negligible}
+\hlstd{N_pt4} \hlkwb{<-} \hlnum{1000000}
+\hlkwd{mem_change}\hlstd{(x1} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(N_pt4))}
+\end{alltt}
+\begin{verbatim}
+## 8.01 MB
+\end{verbatim}
+\begin{alltt}
+\hlkwd{mem_change}\hlstd{(x2} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(N_pt4))}
+\end{alltt}
+\begin{verbatim}
+## 8 MB
+\end{verbatim}
+\begin{alltt}
+\hlkwd{mem_change}\hlstd{(x3} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(N_pt4))}
+\end{alltt}
+\begin{verbatim}
+## 8 MB
+\end{verbatim}
+\begin{alltt}
+\hlkwd{mem_change}\hlstd{(b} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{5}\hlstd{,}\hlnum{9}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## 1.43 kB
+\end{verbatim}
+\begin{alltt}
+\hlkwd{mem_change}\hlstd{(y} \hlkwb{<-} \hlstd{x1}\hlopt{*}\hlstd{b[}\hlnum{1}\hlstd{]} \hlopt{+} \hlstd{x2}\hlopt{*}\hlstd{b[}\hlnum{2}\hlstd{]} \hlopt{+} \hlstd{x3}\hlopt{*}\hlstd{b[}\hlnum{3}\hlstd{]} \hlopt{+} \hlkwd{rnorm}\hlstd{(N_pt4))}
+\end{alltt}
+\begin{verbatim}
+## 8 MB
+\end{verbatim}
+\begin{alltt}
+\hlcom{# sort(sapply(ls(),function(x)\{object_size(get(x))\}))}
+\hlcom{# debug(lm)}
+
+\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x1} \hlopt{+} \hlstd{x2} \hlopt{+} \hlstd{x3)}
+\end{alltt}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3)
+## 
+## Coefficients:
+## (Intercept)           x1           x2           x3  
+##   0.0002181    0.9994089    5.0004205    8.9977552
+\end{verbatim}
+\begin{alltt}
+\hlcom{# 4b)}
+
+\hlcom{# The objects that are bigger than 10% of the original are:}
+
+\hlcom{# Browse[2]> object_size(get("mf"))}
+\hlcom{# 32 MB}
+
+\hlcom{# Browse[2]> object_size(get("x"))}
+\hlcom{# 88 MB}
+
+\hlcom{# Browse[2]> object_size(get("y"))}
+\hlcom{# 64 MB}
+
+\hlcom{# Browse[2]> object_size(get("z"))}
+\hlcom{# 168 MB}
+
+\hlcom{# The reasons that the vectors can be more than just 8 bytes x}
+\hlcom{# the number of elements is because R vectors/lists can feature}
+\hlcom{# several attributes/pieces of metadata, like the "names" of }
+\hlcom{# columns or lists for example, that require variable space. In}
+\hlcom{# our case, the "names" are just the indices (tautological).}
+\hlcom{# }
+
+\hlcom{# 4c)}
+
+\hlcom{# To reduce the memory usage before lm.fit() I would remove}
+\hlcom{# unnecessary attributes like $names from the data frame.}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\end{document}
