@@ -37,11 +37,11 @@ The filtering step (detailed in the main code, below) is pretty much the same fo
 \subsection{}
 
 The code for Spark and PySpark is largely modified from what Chris gave us in Unit 7.  Instead of computing a "median" for the time delay, we instead bin the times, then map the key/tuple to a string and write it to a file in the hadoop filesystem.  By and large, the SPARK method is incredibly faster (all operations can be performed within a few minutes, vs. the arduously long loading times needed by R).  For Spark, the output has been slightly modified to highlight the runtimes, without the verbosity.
-
+\\\\
 For SPARK/PySPARK:
 
 <<engline='python',eval=FALSE>>=
-
+# Import all our necessary pacakges
 import time
 from operator import add
 import numpy as np
@@ -49,73 +49,78 @@ from pyspark import SparkContext
 
 sc = SparkContext()
 
-print "Read in start/stop times..."
-print time.strftime("%H:%M:%S")
+# Read in all of our .bz2 files
+
 lines = sc.textFile('/data/airline')
-print time.strftime("%H:%M:%S")
-# particularly for in-class demo - good to repartition the 3 files to more p
+# Repartition so our processes exceed our cores
 lines = lines.repartition(96).cache()
 
 numLines = lines.count()
 
-# mapper
+# Build the key based on our values, using the same string padding
+# technique I used in R
 def computeKeyValue(line):
     vals = line.split(',')
     if vals[4] is not 'NA':
         vals[4] = str(vals[4]).zfill(4)[0:2]
     time_delay = vals[15]
 
+# Return the key AND a single element list to be concatenated based
+# on the key value.  The list contains the time delay.
     return("-".join([str(vals[8]), str(vals[16]), 
                      str(vals[17]), str(vals[1]),str(vals[3]), 
                      str(vals[4])]),[vals[15]])
 
+# Simple method for counting all the various times that operates on the
+# list passed by the key value function
+    
 def binFun(input):
     c30 = 0
     c60 = 0
-    c120 = 0
+    c180 = 0
     t = 0
     for i in input[1]:
-        if int(i) > 120:
-            c120 += 1
+        if int(i) > 180:
+            c180 += 1
         if int(i) > 60:
             c60 += 1
         if int(i) > 30:
             c30 += 1
         t += 1
-    return((input[0],( c30, c60, c120, t)))
+    return((input[0],( c30, c60, c180, t)))
 
+# QUESTION 2A) - filter out lines missing critical information
 lines = lines.filter(lambda line: line.split(',')[15] != "NA" 
                      and line.split(',')[15] != "DepDelay")
 
+# Convert the key/counts tuple to a string to write to a text file
 def printable(input):
     vals = input[0].split('-')
     c30  = input[1][0]
     c60  = input[1][1]
-    c120 = input[1][2]
+    c180 = input[1][2]
     t    = input[1][3]
 
     return "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%f" % (str(vals[0]), str(vals[1]), 
     str(vals[2]), str(vals[3]), str(vals[4]), 
-    str(vals[5]), str(c30), str(c60), str(c120), str(t), float(c30)/float(t))
+    str(vals[5]), str(c30), str(c60), str(c180), str(t), float(c60)/float(t))
 print "Query start/stop times..."
-print time.strftime("%H:%M:%S")
+# Actually create the keys
 output = lines.map(computeKeyValue).reduceByKey(add)
-print time.strftime("%H:%M:%S")
-
-
+# Used for testing:
 # print output.collect()[0:10]
 
+# Create the bins based on keys
 print "Delay binning start/stop times..."
-print time.strftime("%H:%M:%S")
 myResults = output.map(binFun)
-print time.strftime("%H:%M:%S")
+# Print to text file
 myResults.map(printable).repartition(1).saveAsTextFile('/data/airline_processed')
 
 @
 
 Output:
 
-\begin{lstlisting}[language=bash,caption={ls results}]
+\begin{lstlisting}[language=bash,caption={SPARK timing}]
 15/11/02 10:15:47 INFO spark.SparkContext: Running Spark version 1.5.1
 15/11/02 10:15:48 WARN spark.SparkConf: 
 SPARK_WORKER_INSTANCES was detected (set to '1').
@@ -142,7 +147,7 @@ Please instead use:
 
 And if you wanted to see a few lines from the built file (note, they are in no way ordered):
 
-\begin{lstlisting}[language=bash,caption={ls results}]
+\begin{lstlisting}[language=bash,caption={head of SPARK output}]
 Alexanders-MBP:airline_processed Alex$ head part-00000 
 DL,JFK,ORD,10,6,18,2,0,0,24,0.083333
 YV,CLT,GSO,1,7,00,1,1,1,1,1.000000
@@ -159,7 +164,7 @@ AS,SEA,GEG,9,5,23,2,1,0,32,0.062500
 For R/RSqlite:
 
 <<engine='R',eval=FALSE>>=
-
+# Build up the filenames for year.csv.bz2 for our range
 years <- seq(from=1987, to=2008)
 years_strings <- sapply(years,toString)
 fns <- sapply(years_strings, paste, sep="", ".csv.bz2")
@@ -170,8 +175,9 @@ library("RSQLite")
 library("stringr")
 my_path <- "~/"
 setwd(my_path)
-
+# Create our flight database file
 database_filename = "FlightDatabase.sqlite"
+# Read in based on the filenames
 ptm <- proc.time()
 for (i in seq(length(fns)))
 {
@@ -193,18 +199,23 @@ proc.time() - ptm
 dbSendQuery(db, "delete from flight_info where DepDelay==0.1234")
 dbSendQuery(db, "delete from flight_info where DepTime is '0.'")
 
-# 1a)
+# 1)
 
+# I ended up using 'ls' but here is a way to check the file
+# size using R itself
 file.info(database_filename)
 
-# 2b)
+# Query 
+
+# 2b) Query based on the departure delays using a sum/case to
+# count the number of "offending" flights
 ptm <- proc.time()
 x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
                        Dest, Month, DayOfWeek, 
                        DepTime,
-                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       SUM(CASE WHEN DepDelay > 30 THEN 1 ELSE 0 END) as DelayedCounts, 
                        Count(*) as TotalFlightCounts,
-                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       CAST(SUM(CASE WHEN DepDelay > 30 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
                        as DelayFraction
                        from flight_info group by
                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
@@ -212,9 +223,9 @@ x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin,
 y <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
                        Dest, Month, DayOfWeek, 
                        DepTime,
-                       SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
                        Count(*) as TotalFlightCounts,
-                       CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
                        as DelayFraction
                        from flight_info group by
                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
@@ -232,11 +243,9 @@ z <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin,
                        order by DelayFraction desc"),n=-1)
 proc.time() - ptm
 
-head(x,n=10)
-head(y,n=10)
-head(z,n=10)
-
 @
+
+Results for 30, 60, 180 minute delays (I had put "90" where I intended to put "30").
 
 \begin{lstlisting}[language=bash,caption={Timing for the loading, initial (non-indexed) query}]
 > proc.time() - ptm
@@ -247,75 +256,6 @@ head(z,n=10)
     user   system  elapsed 
 1846.000  141.804 2270.214
 
-> head(x,n=10)
-   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
-1             9E    ABE  DTW     1         1      08             1
-2             9E    ABE  DTW     1         1      14             1
-3             9E    ABE  DTW     1         2      18             1
-4             9E    ABE  DTW     1         3      14             1
-5             9E    ABE  DTW     1         3      18             1
-6             9E    ABE  DTW     1         5      17             1
-7             9E    ABE  DTW     1         5      23             1
-8             9E    ABE  DTW     1         7      14             1
-9             9E    ABE  DTW     2         2      07             1
-10            9E    ABE  DTW     2         2      08             1
-   TotalFlightCounts DelayFraction
-1                  1             1
-2                  1             1
-3                  1             1
-4                  1             1
-5                  1             1
-6                  1             1
-7                  1             1
-8                  1             1
-9                  1             1
-10                 1             1
-> head(y,n=10)
-   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
-1             9E    ABE  DTW     1         1      08             1
-2             9E    ABE  DTW     1         1      14             1
-3             9E    ABE  DTW     1         2      18             1
-4             9E    ABE  DTW     1         3      14             1
-5             9E    ABE  DTW     1         3      18             1
-6             9E    ABE  DTW     1         5      23             1
-7             9E    ABE  DTW     1         7      14             1
-8             9E    ABE  DTW     2         2      08             1
-9             9E    ABE  DTW     2         2      15             1
-10            9E    ABE  DTW     2         7      17             1
-   TotalFlightCounts DelayFraction
-1                  1             1
-2                  1             1
-3                  1             1
-4                  1             1
-5                  1             1
-6                  1             1
-7                  1             1
-8                  1             1
-9                  1             1
-10                 1             1
-> head(z,n=10)
-   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
-1             9E    ABE  DTW     1         3      18             1
-2             9E    ABE  DTW     1         5      23             1
-3             9E    ABE  DTW     2         2      15             1
-4             9E    ABE  DTW     6         1      10             1
-5             9E    ABE  DTW     6         2      21             1
-6             9E    ABE  DTW     9         7      20             1
-7             9E    ABE  DTW    12         1      20             1
-8             9E    ABE  DTW    12         3      11             1
-9             9E    ABE  DTW    12         5      21             1
-10            9E    ABE  DTW    12         7      15             1
-   TotalFlightCounts DelayFraction
-1                  1             1
-2                  1             1
-3                  1             1
-4                  1             1
-5                  1             1
-6                  1             1
-7                  1             1
-8                  1             1
-9                  1             1
-10                 1             1
 \end{lstlisting}
 
 \subsection{}
@@ -327,18 +267,22 @@ We perform the same calcuation, just using python instead of R.  It gives the ri
 We add a index, which speeds up our calculation precipitously!  Note, I ran this in the middle of the night, and I think the process got hung in an odd way, but the user and system time were much faster.  When I tested on just single eyar databases on my local system, adding the key always sped up the searches, sometimes by as much as a factor of 2.
 
 <<engine='R',eval=FALSE>>=
+# Question 2D)
+# Add the key based on our search values:
 dbSendQuery(db, "create index delay_index on flight_info
             (UniqueCarrier, Origin, Dest, Month, 
             DayOfWeek, DepTime)")
+# How we might REMOVE the key, used for testing
 # dbSendQuery(db, "drop index delay_index")
 
+# Run the same searches, now much faster
 ptm <- proc.time()
 x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
                        Dest, Month, DayOfWeek, 
                        DepTime,
-                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       SUM(CASE WHEN DepDelay > 30 THEN 1 ELSE 0 END) as DelayedCounts, 
                        Count(*) as TotalFlightCounts,
-                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       CAST(SUM(CASE WHEN DepDelay > 30 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
                        as DelayFraction
                        from flight_info group by
                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
@@ -347,10 +291,10 @@ x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin,
 y <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
                        Dest, Month, DayOfWeek, 
                        DepTime,
-                       SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) 
+                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) 
                        as DelayedCounts, 
                        Count(*) as TotalFlightCounts,
-                       CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
+                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
                        from flight_info group by
                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
                        order by DelayFraction desc"),n=-1)
@@ -369,7 +313,7 @@ proc.time() - ptm
 
 @
 
-\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
+\begin{lstlisting}[language=bash,caption={Timing for SQLite query}]
 
 > proc.time() - ptm
      user    system   elapsed 
@@ -383,8 +327,8 @@ Using R, we take our object generated by RSQLite and then subset based on flight
 
 <<engine='R',eval=FALSE>>=
 
-# 2e)
-
+# Question 2E)
+# 
 xb <- subset(x, TotalFlightCounts > 149)
 yb <- subset(y, TotalFlightCounts > 149)
 zb <- subset(z, TotalFlightCounts > 149)
@@ -395,8 +339,34 @@ head(zb,n=10)
 
 @
 
-\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
-> head(xb,n=10)
+Results for 30, 60, 180 minute delays (I had put "90" where I intended to put "30").
+
+\begin{lstlisting}[language=bash,caption={Flight Delay (Top 10)}]
+head(xb,n=10)
+        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1945772            WN    HOU  DAL     2         5      19            61
+1946374            WN    DAL  HOU     6         5      20            62
+1971173            WN    DAL  HOU     2         5      21            63
+1974391            WN    DAL  HOU     5         5      21            61
+1985521            WN    HOU  DAL     2         5      20            58
+1994481            WN    HOU  DAL    10         5      20            61
+1995486            UA    LAX  SFO    12         5      18            52
+1997129            WN    DAL  HOU    12         5      20            53
+1997219            WN    HOU  DAL     6         5      21            56
+1997436            WN    HOU  DAL     6         5      20            56
+        TotalFlightCounts DelayFraction
+1945772               153     0.3986928
+1946374               158     0.3924051
+1971173               168     0.3750000
+1974391               165     0.3696970
+1985521               162     0.3580247
+1994481               175     0.3485714
+1995486               150     0.3466667
+1997129               155     0.3419355
+1997219               164     0.3414634
+1997436               165     0.3393939
+
+> head(yb,n=10)
         UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
 1638876            WN    HOU  DAL     6         5      18            36
 1666191            WN    HOU  DAL     5         4      21            31
@@ -419,29 +389,6 @@ head(zb,n=10)
 1749951               168     0.1547619
 1761811               163     0.1533742
 1761812               150     0.1533333
-> head(yb,n=10)
-        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
-1191237            WN    DAL  HOU     6         5      20            16
-1221851            WN    HOU  DAL     6         4      19            17
-1253250            WN    HOU  DAL     7         7      19            14
-1253508            WN    HOU  DAL     5         4      21            16
-1257823            WN    HOU  DAL     5         4      19            15
-1257836            WN    HOU  DAL     2         5      18            14
-1258619            WN    HOU  DAL    10         5      20            15
-1258684            WN    HOU  DAL     6         5      21            14
-1283348            UA    LAX  SFO    11         7      17            13
-1287479            WN    DAL  HOU     6         4      21            12
-        TotalFlightCounts DelayFraction
-1191237               158    0.10126582
-1221851               177    0.09604520
-1253250               157    0.08917197
-1253508               180    0.08888889
-1257823               174    0.08620690
-1257836               163    0.08588957
-1258619               175    0.08571429
-1258684               164    0.08536585
-1283348               157    0.08280255
-1287479               150    0.08000000
 > head(zb,n=10)
        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
 378918            WN    HOU  DAL     7         7      19             5
@@ -471,10 +418,15 @@ head(zb,n=10)
 
 <<eval=FALSE,engine='R'>>=
 
-# 3)
+# Question 3)
 # install.packages("parallel")
 library("parallel")
 
+# Build a function, getDelays, which takes a time value
+# and a "string" which represents a letter of the alphabet
+# this is used in a regex way to break down the search by
+# flight code starting letter (handy way to ensure no doubled
+# results)
 getDelays <- function(x,s) {
   # print(x)
   s <- toString(s)
@@ -498,7 +450,8 @@ getDelays <- function(x,s) {
 alphabet = c("A","B","C","D","E","F","G","H","I","J","K","L",
              "M","N","O","P","Q","R","S","T","U","V","W","X",
              "Y","Z")
-times <- c(60, 90, 180)
+times <- c(30, 60, 180)
+# All combinations of alphabet letters and delay times
 tlc <- expand.grid(times,alphabet)
 names(tlc) <- c("x","s")
 
