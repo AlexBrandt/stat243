@@ -1,0 +1,1300 @@
+nohup: ignoring input
+15/11/02 10:15:47 INFO spark.SparkContext: Running Spark version 1.5.1
+15/11/02 10:15:48 WARN spark.SparkConf: 
+SPARK_WORKER_INSTANCES was detected (set to '1').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with --num-executors to specify the number of executors
+ - Or set SPARK_EXECUTOR_INSTANCES
+ - spark.executor.instances to configure the number of instances in the spark config.
+        
+15/11/02 10:15:48 INFO spark.SecurityManager: Changing view acls to: root
+15/11/02 10:15:48 INFO spark.SecurityManager: Changing modify acls to: root
+15/11/02 10:15:48 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(root); users with modify permissions: Set(root)
+15/11/02 10:15:49 INFO slf4j.Slf4jLogger: Slf4jLogger started
+15/11/02 10:15:49 INFO Remoting: Starting remoting
+15/11/02 10:15:49 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.30.136:41202]
+15/11/02 10:15:49 INFO util.Utils: Successfully started service 'sparkDriver' on port 41202.
+15/11/02 10:15:49 INFO spark.SparkEnv: Registering MapOutputTracker
+15/11/02 10:15:49 INFO spark.SparkEnv: Registering BlockManagerMaster
+15/11/02 10:15:49 INFO storage.DiskBlockManager: Created local directory at /mnt/spark/blockmgr-d3c165d3-a3a3-4354-840d-1f38c911fb2c
+15/11/02 10:15:49 INFO storage.DiskBlockManager: Created local directory at /mnt2/spark/blockmgr-6088d928-20d0-4511-bd1e-1f3f07af1cf9
+15/11/02 10:15:49 INFO storage.MemoryStore: MemoryStore started with capacity 530.3 MB
+15/11/02 10:15:49 INFO spark.HttpFileServer: HTTP File server directory is /mnt/spark/spark-baf03b91-f83c-4538-b541-c0939c6b13a3/httpd-f278b147-3a9f-48ae-96af-93a4025c538d
+15/11/02 10:15:49 INFO spark.HttpServer: Starting HTTP Server
+15/11/02 10:15:49 INFO server.Server: jetty-8.y.z-SNAPSHOT
+15/11/02 10:15:49 INFO server.AbstractConnector: Started SocketConnector@0.0.0.0:52777
+15/11/02 10:15:49 INFO util.Utils: Successfully started service 'HTTP file server' on port 52777.
+15/11/02 10:15:49 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+15/11/02 10:15:50 INFO server.Server: jetty-8.y.z-SNAPSHOT
+15/11/02 10:15:50 WARN component.AbstractLifeCycle: FAILED SelectChannelConnector@0.0.0.0:4040: java.net.BindException: Address already in use
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:463)
+	at sun.nio.ch.Net.bind(Net.java:455)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.open(SelectChannelConnector.java:187)
+	at org.spark-project.jetty.server.AbstractConnector.doStart(AbstractConnector.java:316)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:265)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.spark-project.jetty.server.Server.doStart(Server.java:293)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.apache.spark.ui.JettyUtils$.org$apache$spark$ui$JettyUtils$$connect$1(JettyUtils.scala:236)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.util.Utils$$anonfun$startServiceOnPort$1.apply$mcVI$sp(Utils.scala:1913)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:141)
+	at org.apache.spark.util.Utils$.startServiceOnPort(Utils.scala:1904)
+	at org.apache.spark.ui.JettyUtils$.startJettyServer(JettyUtils.scala:246)
+	at org.apache.spark.ui.WebUI.bind(WebUI.scala:136)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:474)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:61)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:234)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:379)
+	at py4j.Gateway.invoke(Gateway.java:214)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:79)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:68)
+	at py4j.GatewayConnection.run(GatewayConnection.java:207)
+	at java.lang.Thread.run(Thread.java:745)
+15/11/02 10:15:50 WARN component.AbstractLifeCycle: FAILED org.spark-project.jetty.server.Server@36fe468f: java.net.BindException: Address already in use
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:463)
+	at sun.nio.ch.Net.bind(Net.java:455)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.open(SelectChannelConnector.java:187)
+	at org.spark-project.jetty.server.AbstractConnector.doStart(AbstractConnector.java:316)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:265)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.spark-project.jetty.server.Server.doStart(Server.java:293)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.apache.spark.ui.JettyUtils$.org$apache$spark$ui$JettyUtils$$connect$1(JettyUtils.scala:236)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.util.Utils$$anonfun$startServiceOnPort$1.apply$mcVI$sp(Utils.scala:1913)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:141)
+	at org.apache.spark.util.Utils$.startServiceOnPort(Utils.scala:1904)
+	at org.apache.spark.ui.JettyUtils$.startJettyServer(JettyUtils.scala:246)
+	at org.apache.spark.ui.WebUI.bind(WebUI.scala:136)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:474)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:61)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:234)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:379)
+	at py4j.Gateway.invoke(Gateway.java:214)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:79)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:68)
+	at py4j.GatewayConnection.run(GatewayConnection.java:207)
+	at java.lang.Thread.run(Thread.java:745)
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/11/02 10:15:50 WARN util.Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+15/11/02 10:15:50 INFO server.Server: jetty-8.y.z-SNAPSHOT
+15/11/02 10:15:50 WARN component.AbstractLifeCycle: FAILED SelectChannelConnector@0.0.0.0:4041: java.net.BindException: Address already in use
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:463)
+	at sun.nio.ch.Net.bind(Net.java:455)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.open(SelectChannelConnector.java:187)
+	at org.spark-project.jetty.server.AbstractConnector.doStart(AbstractConnector.java:316)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:265)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.spark-project.jetty.server.Server.doStart(Server.java:293)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.apache.spark.ui.JettyUtils$.org$apache$spark$ui$JettyUtils$$connect$1(JettyUtils.scala:236)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.util.Utils$$anonfun$startServiceOnPort$1.apply$mcVI$sp(Utils.scala:1913)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:141)
+	at org.apache.spark.util.Utils$.startServiceOnPort(Utils.scala:1904)
+	at org.apache.spark.ui.JettyUtils$.startJettyServer(JettyUtils.scala:246)
+	at org.apache.spark.ui.WebUI.bind(WebUI.scala:136)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:474)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:61)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:234)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:379)
+	at py4j.Gateway.invoke(Gateway.java:214)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:79)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:68)
+	at py4j.GatewayConnection.run(GatewayConnection.java:207)
+	at java.lang.Thread.run(Thread.java:745)
+15/11/02 10:15:50 WARN component.AbstractLifeCycle: FAILED org.spark-project.jetty.server.Server@254c5c83: java.net.BindException: Address already in use
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:463)
+	at sun.nio.ch.Net.bind(Net.java:455)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.open(SelectChannelConnector.java:187)
+	at org.spark-project.jetty.server.AbstractConnector.doStart(AbstractConnector.java:316)
+	at org.spark-project.jetty.server.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:265)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.spark-project.jetty.server.Server.doStart(Server.java:293)
+	at org.spark-project.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.apache.spark.ui.JettyUtils$.org$apache$spark$ui$JettyUtils$$connect$1(JettyUtils.scala:236)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.ui.JettyUtils$$anonfun$3.apply(JettyUtils.scala:246)
+	at org.apache.spark.util.Utils$$anonfun$startServiceOnPort$1.apply$mcVI$sp(Utils.scala:1913)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:141)
+	at org.apache.spark.util.Utils$.startServiceOnPort(Utils.scala:1904)
+	at org.apache.spark.ui.JettyUtils$.startJettyServer(JettyUtils.scala:246)
+	at org.apache.spark.ui.WebUI.bind(WebUI.scala:136)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at org.apache.spark.SparkContext$$anonfun$13.apply(SparkContext.scala:474)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:474)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:61)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:234)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:379)
+	at py4j.Gateway.invoke(Gateway.java:214)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:79)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:68)
+	at py4j.GatewayConnection.run(GatewayConnection.java:207)
+	at java.lang.Thread.run(Thread.java:745)
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/11/02 10:15:50 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/11/02 10:15:50 WARN util.Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+15/11/02 10:15:50 INFO server.Server: jetty-8.y.z-SNAPSHOT
+15/11/02 10:15:50 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:4042
+15/11/02 10:15:50 INFO util.Utils: Successfully started service 'SparkUI' on port 4042.
+15/11/02 10:15:50 INFO ui.SparkUI: Started SparkUI at http://ec2-52-27-12-221.us-west-2.compute.amazonaws.com:4042
+15/11/02 10:15:50 INFO util.Utils: Copying /root/spark_flight_analysis.py to /mnt/spark/spark-baf03b91-f83c-4538-b541-c0939c6b13a3/userFiles-a8ef8dbb-e106-49ed-b554-df4fad496848/spark_flight_analysis.py
+15/11/02 10:15:50 INFO spark.SparkContext: Added file file:/root/spark_flight_analysis.py at http://172.31.30.136:52777/files/spark_flight_analysis.py with timestamp 1446459350504
+15/11/02 10:15:50 WARN metrics.MetricsSystem: Using default name DAGScheduler for source because spark.app.id is not set.
+15/11/02 10:15:50 INFO client.AppClient$ClientEndpoint: Connecting to master spark://ec2-52-27-12-221.us-west-2.compute.amazonaws.com:7077...
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Connected to Spark cluster with app ID app-20151102101551-0005
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/0 on worker-20151102093524-172.31.19.190-57770 (172.31.19.190:57770) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/0 on hostPort 172.31.19.190:57770 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/1 on worker-20151102093524-172.31.19.180-42100 (172.31.19.180:42100) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/1 on hostPort 172.31.19.180:42100 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/2 on worker-20151102093524-172.31.19.179-60934 (172.31.19.179:60934) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/2 on hostPort 172.31.19.179:60934 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/3 on worker-20151102093524-172.31.19.183-39502 (172.31.19.183:39502) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/3 on hostPort 172.31.19.183:39502 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/4 on worker-20151102093524-172.31.19.185-41489 (172.31.19.185:41489) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/4 on hostPort 172.31.19.185:41489 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/5 on worker-20151102093524-172.31.19.187-54786 (172.31.19.187:54786) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/5 on hostPort 172.31.19.187:54786 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/6 on worker-20151102093524-172.31.19.189-34197 (172.31.19.189:34197) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/6 on hostPort 172.31.19.189:34197 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/7 on worker-20151102093524-172.31.19.182-43396 (172.31.19.182:43396) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/7 on hostPort 172.31.19.182:43396 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/8 on worker-20151102093524-172.31.19.186-53934 (172.31.19.186:53934) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/8 on hostPort 172.31.19.186:53934 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/9 on worker-20151102093524-172.31.19.184-38228 (172.31.19.184:38228) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/9 on hostPort 172.31.19.184:38228 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/10 on worker-20151102093524-172.31.19.188-44692 (172.31.19.188:44692) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/10 on hostPort 172.31.19.188:44692 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor added: app-20151102101551-0005/11 on worker-20151102093524-172.31.19.181-54561 (172.31.19.181:54561) with 2 cores
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: Granted executor ID app-20151102101551-0005/11 on hostPort 172.31.19.181:54561 with 2 cores, 6.0 GB RAM
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/0 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/1 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/7 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/4 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/6 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/2 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/9 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/8 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/10 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/11 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/3 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/5 is now LOADING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/0 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/1 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/2 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/3 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/4 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/5 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/6 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/7 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/8 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/9 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/10 is now RUNNING
+15/11/02 10:15:51 INFO client.AppClient$ClientEndpoint: Executor updated: app-20151102101551-0005/11 is now RUNNING
+15/11/02 10:15:51 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42792.
+15/11/02 10:15:51 INFO netty.NettyBlockTransferService: Server created on 42792
+15/11/02 10:15:51 INFO storage.BlockManagerMaster: Trying to register BlockManager
+15/11/02 10:15:51 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.30.136:42792 with 530.3 MB RAM, BlockManagerId(driver, 172.31.30.136, 42792)
+15/11/02 10:15:51 INFO storage.BlockManagerMaster: Registered BlockManager
+15/11/02 10:15:51 INFO cluster.SparkDeploySchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+Read in start/stop times...
+10:15:51
+15/11/02 10:15:52 INFO storage.MemoryStore: ensureFreeSpace(47432) called with curMem=0, maxMem=556038881
+15/11/02 10:15:52 INFO storage.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 46.3 KB, free 530.2 MB)
+15/11/02 10:15:52 INFO storage.MemoryStore: ensureFreeSpace(4484) called with curMem=47432, maxMem=556038881
+15/11/02 10:15:52 INFO storage.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 4.4 KB, free 530.2 MB)
+15/11/02 10:15:52 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.30.136:42792 (size: 4.4 KB, free: 530.3 MB)
+15/11/02 10:15:52 INFO spark.SparkContext: Created broadcast 0 from textFile at NativeMethodAccessorImpl.java:-2
+10:15:52
+15/11/02 10:15:52 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/11/02 10:15:52 WARN snappy.LoadSnappy: Snappy native library not loaded
+15/11/02 10:15:52 INFO mapred.FileInputFormat: Total input paths to process : 22
+15/11/02 10:15:53 INFO spark.SparkContext: Starting job: count at /root/spark_flight_analysis.py:15
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Registering RDD 2 (repartition at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Got job 0 (count at /root/spark_flight_analysis.py:15) with 96 output partitions
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Final stage: ResultStage 1(count at /root/spark_flight_analysis.py:15)
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[2] at repartition at NativeMethodAccessorImpl.java:-2), which has no missing parents
+15/11/02 10:15:53 INFO storage.MemoryStore: ensureFreeSpace(3864) called with curMem=51916, maxMem=556038881
+15/11/02 10:15:53 INFO storage.MemoryStore: Block broadcast_1 stored as values in memory (estimated size 3.8 KB, free 530.2 MB)
+15/11/02 10:15:53 INFO storage.MemoryStore: ensureFreeSpace(2198) called with curMem=55780, maxMem=556038881
+15/11/02 10:15:53 INFO storage.MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.1 KB, free 530.2 MB)
+15/11/02 10:15:53 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.30.136:42792 (size: 2.1 KB, free: 530.3 MB)
+15/11/02 10:15:53 INFO spark.SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:861
+15/11/02 10:15:53 INFO scheduler.DAGScheduler: Submitting 22 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[2] at repartition at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:15:53 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 22 tasks
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.180:42445/user/Executor#399996117]) with ID 1
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 172.31.19.180, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, 172.31.19.180, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.189:40598/user/Executor#-1227179959]) with ID 6
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, 172.31.19.189, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, 172.31.19.189, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.190:46379/user/Executor#-2071746656]) with ID 0
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, 172.31.19.190, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, 172.31.19.190, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.185:33586/user/Executor#623684052]) with ID 4
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, 172.31.19.185, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, 172.31.19.185, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.186:52357/user/Executor#1878475296]) with ID 8
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, 172.31.19.186, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, 172.31.19.186, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.179:55926/user/Executor#435000773]) with ID 2
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, 172.31.19.179, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, 172.31.19.179, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.184:46999/user/Executor#-1058044114]) with ID 9
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, 172.31.19.184, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, 172.31.19.184, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.187:37622/user/Executor#2097851416]) with ID 5
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, 172.31.19.187, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, 172.31.19.187, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.183:45669/user/Executor#1918539317]) with ID 3
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, 172.31.19.183, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, 172.31.19.183, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.181:40239/user/Executor#-397447452]) with ID 11
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, 172.31.19.181, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, 172.31.19.181, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.188:40727/user/Executor#-1316036014]) with ID 10
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, 172.31.19.188, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO scheduler.TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, 172.31.19.188, ANY, 2252 bytes)
+15/11/02 10:15:55 INFO cluster.SparkDeploySchedulerBackend: Registered executor: AkkaRpcEndpointRef(Actor[akka.tcp://sparkExecutor@172.31.19.182:35540/user/Executor#801936553]) with ID 7
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.180:43927 with 3.1 GB RAM, BlockManagerId(1, 172.31.19.180, 43927)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.189:49707 with 3.1 GB RAM, BlockManagerId(6, 172.31.19.189, 49707)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.190:50266 with 3.1 GB RAM, BlockManagerId(0, 172.31.19.190, 50266)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.185:60084 with 3.1 GB RAM, BlockManagerId(4, 172.31.19.185, 60084)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.186:50161 with 3.1 GB RAM, BlockManagerId(8, 172.31.19.186, 50161)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.179:53861 with 3.1 GB RAM, BlockManagerId(2, 172.31.19.179, 53861)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.184:52954 with 3.1 GB RAM, BlockManagerId(9, 172.31.19.184, 52954)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.187:44237 with 3.1 GB RAM, BlockManagerId(5, 172.31.19.187, 44237)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.183:52244 with 3.1 GB RAM, BlockManagerId(3, 172.31.19.183, 52244)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.181:54734 with 3.1 GB RAM, BlockManagerId(11, 172.31.19.181, 54734)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.188:33650 with 3.1 GB RAM, BlockManagerId(10, 172.31.19.188, 33650)
+15/11/02 10:15:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager 172.31.19.182:58446 with 3.1 GB RAM, BlockManagerId(7, 172.31.19.182, 58446)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.180:43927 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.189:49707 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.184:52954 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.179:53861 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.185:60084 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.183:52244 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.190:50266 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.186:50161 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.187:44237 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.188:33650 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.31.19.181:54734 (size: 2.1 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.180:43927 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.189:49707 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.184:52954 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.185:60084 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.179:53861 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.187:44237 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.190:50266 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.186:50161 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.183:52244 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.188:33650 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:15:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.31.19.181:54734 (size: 4.4 KB, free: 3.1 GB)
+15/11/02 10:16:16 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 21786 ms on 172.31.19.180 (1/22)
+15/11/02 10:17:02 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 67723 ms on 172.31.19.190 (2/22)
+15/11/02 10:17:10 INFO scheduler.TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 75187 ms on 172.31.19.185 (3/22)
+15/11/02 10:17:11 INFO scheduler.TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 75891 ms on 172.31.19.185 (4/22)
+15/11/02 10:17:11 INFO scheduler.TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 76147 ms on 172.31.19.190 (5/22)
+15/11/02 10:17:15 INFO scheduler.TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 80235 ms on 172.31.19.186 (6/22)
+15/11/02 10:17:15 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 80460 ms on 172.31.19.180 (7/22)
+15/11/02 10:17:17 INFO scheduler.TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 81981 ms on 172.31.19.186 (8/22)
+15/11/02 10:17:17 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 82169 ms on 172.31.19.189 (9/22)
+15/11/02 10:17:24 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 89710 ms on 172.31.19.189 (10/22)
+15/11/02 10:17:25 INFO scheduler.TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 90126 ms on 172.31.19.184 (11/22)
+15/11/02 10:17:28 INFO scheduler.TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 92933 ms on 172.31.19.184 (12/22)
+15/11/02 10:17:31 INFO scheduler.TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 96193 ms on 172.31.19.183 (13/22)
+15/11/02 10:17:32 INFO scheduler.TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 97579 ms on 172.31.19.179 (14/22)
+15/11/02 10:17:33 INFO scheduler.TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 98719 ms on 172.31.19.179 (15/22)
+15/11/02 10:17:35 INFO scheduler.TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 100709 ms on 172.31.19.187 (16/22)
+15/11/02 10:17:49 INFO scheduler.TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 114566 ms on 172.31.19.183 (17/22)
+15/11/02 10:17:53 INFO scheduler.TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 117779 ms on 172.31.19.187 (18/22)
+15/11/02 10:18:24 INFO scheduler.TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 148961 ms on 172.31.19.181 (19/22)
+15/11/02 10:18:24 INFO scheduler.TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 149065 ms on 172.31.19.188 (20/22)
+15/11/02 10:18:24 INFO scheduler.TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 149450 ms on 172.31.19.181 (21/22)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 182827 ms on 172.31.19.188 (22/22)
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: ShuffleMapStage 0 (repartition at NativeMethodAccessorImpl.java:-2) finished in 184.993 s
+15/11/02 10:18:58 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: looking for newly runnable stages
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: running: Set()
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: waiting: Set(ResultStage 1)
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: failed: Set()
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: Missing parents for ResultStage 1: List()
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: Submitting ResultStage 1 (PythonRDD[6] at count at /root/spark_flight_analysis.py:15), which is now runnable
+15/11/02 10:18:58 INFO storage.MemoryStore: ensureFreeSpace(5408) called with curMem=57978, maxMem=556038881
+15/11/02 10:18:58 INFO storage.MemoryStore: Block broadcast_2 stored as values in memory (estimated size 5.3 KB, free 530.2 MB)
+15/11/02 10:18:58 INFO storage.MemoryStore: ensureFreeSpace(3320) called with curMem=63386, maxMem=556038881
+15/11/02 10:18:58 INFO storage.MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 3.2 KB, free 530.2 MB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.30.136:42792 (size: 3.2 KB, free: 530.3 MB)
+15/11/02 10:18:58 INFO spark.SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:861
+15/11/02 10:18:58 INFO scheduler.DAGScheduler: Submitting 96 missing tasks from ResultStage 1 (PythonRDD[6] at count at /root/spark_flight_analysis.py:15)
+15/11/02 10:18:58 INFO scheduler.TaskSchedulerImpl: Adding task set 1.0 with 96 tasks
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 1.0 (TID 22, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 1.0 (TID 23, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 1.0 (TID 24, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 1.0 (TID 25, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 1.0 (TID 26, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 5.0 in stage 1.0 (TID 27, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 6.0 in stage 1.0 (TID 28, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 7.0 in stage 1.0 (TID 29, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 8.0 in stage 1.0 (TID 30, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 9.0 in stage 1.0 (TID 31, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 10.0 in stage 1.0 (TID 32, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 11.0 in stage 1.0 (TID 33, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 12.0 in stage 1.0 (TID 34, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 13.0 in stage 1.0 (TID 35, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 14.0 in stage 1.0 (TID 36, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 15.0 in stage 1.0 (TID 37, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 16.0 in stage 1.0 (TID 38, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 17.0 in stage 1.0 (TID 39, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 18.0 in stage 1.0 (TID 40, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 19.0 in stage 1.0 (TID 41, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 20.0 in stage 1.0 (TID 42, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 21.0 in stage 1.0 (TID 43, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 22.0 in stage 1.0 (TID 44, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO scheduler.TaskSetManager: Starting task 23.0 in stage 1.0 (TID 45, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.181:54734 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.187:44237 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.189:49707 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.186:50161 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.188:33650 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.179:53861 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.184:52954 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.183:52244 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.180:43927 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.185:60084 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.190:50266 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.186:52357
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 322 bytes
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.189:40598
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.183:45669
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.184:46999
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.188:40727
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.181:40239
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.180:42445
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.179:55926
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.185:33586
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.190:46379
+15/11/02 10:18:58 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.187:37622
+15/11/02 10:18:58 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.19.182:58446 (size: 3.2 KB, free: 3.1 GB)
+15/11/02 10:18:59 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.31.19.182:35540
+15/11/02 10:19:08 INFO storage.BlockManagerInfo: Added rdd_5_16 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:08 INFO storage.BlockManagerInfo: Added rdd_5_14 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:08 INFO storage.BlockManagerInfo: Added rdd_5_4 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:08 INFO storage.BlockManagerInfo: Added rdd_5_2 in memory on 172.31.19.181:54734 (size: 62.6 MB, free: 3.0 GB)
+15/11/02 10:19:08 INFO storage.BlockManagerInfo: Added rdd_5_22 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_5 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_20 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_8 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_21 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_9 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_10 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_18 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_19 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_6 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_23 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_1 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_7 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_11 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_13 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_17 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:09 INFO storage.BlockManagerInfo: Added rdd_5_15 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:10 INFO storage.BlockManagerInfo: Added rdd_5_3 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:10 INFO storage.BlockManagerInfo: Added rdd_5_12 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:11 INFO storage.BlockManagerInfo: Added rdd_5_0 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.30.136:42792 in memory (size: 2.1 KB, free: 530.3 MB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.186:50161 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.190:50266 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.181:54734 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.187:44237 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.188:33650 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.183:52244 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.185:60084 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.180:43927 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.179:53861 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.189:49707 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:13 INFO storage.BlockManagerInfo: Removed broadcast_1_piece0 on 172.31.19.184:52954 in memory (size: 2.1 KB, free: 3.0 GB)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Starting task 24.0 in stage 1.0 (TID 46, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Finished task 18.0 in stage 1.0 (TID 40) in 20216 ms on 172.31.19.186 (1/96)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Starting task 25.0 in stage 1.0 (TID 47, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Finished task 9.0 in stage 1.0 (TID 31) in 20238 ms on 172.31.19.185 (2/96)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Starting task 26.0 in stage 1.0 (TID 48, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 1.0 (TID 26) in 20396 ms on 172.31.19.184 (3/96)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Starting task 27.0 in stage 1.0 (TID 49, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Finished task 6.0 in stage 1.0 (TID 28) in 20419 ms on 172.31.19.186 (4/96)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Starting task 28.0 in stage 1.0 (TID 50, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:18 INFO scheduler.TaskSetManager: Finished task 21.0 in stage 1.0 (TID 43) in 20520 ms on 172.31.19.185 (5/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 29.0 in stage 1.0 (TID 51, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 23.0 in stage 1.0 (TID 45) in 20840 ms on 172.31.19.190 (6/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 30.0 in stage 1.0 (TID 52, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 11.0 in stage 1.0 (TID 33) in 20873 ms on 172.31.19.190 (7/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 31.0 in stage 1.0 (TID 53, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 1.0 (TID 25) in 21115 ms on 172.31.19.179 (8/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 32.0 in stage 1.0 (TID 54, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 16.0 in stage 1.0 (TID 38) in 21121 ms on 172.31.19.184 (9/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 33.0 in stage 1.0 (TID 55, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 14.0 in stage 1.0 (TID 36) in 21228 ms on 172.31.19.181 (10/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 34.0 in stage 1.0 (TID 56, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 5.0 in stage 1.0 (TID 27) in 21435 ms on 172.31.19.183 (11/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 35.0 in stage 1.0 (TID 57, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 13.0 in stage 1.0 (TID 35) in 21460 ms on 172.31.19.189 (12/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 36.0 in stage 1.0 (TID 58, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 15.0 in stage 1.0 (TID 37) in 21466 ms on 172.31.19.179 (13/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 37.0 in stage 1.0 (TID 59, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 1.0 (TID 24) in 21576 ms on 172.31.19.181 (14/96)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Starting task 38.0 in stage 1.0 (TID 60, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:19 INFO scheduler.TaskSetManager: Finished task 17.0 in stage 1.0 (TID 39) in 21691 ms on 172.31.19.183 (15/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 39.0 in stage 1.0 (TID 61, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 1.0 (TID 23) in 21886 ms on 172.31.19.189 (16/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 40.0 in stage 1.0 (TID 62, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 8.0 in stage 1.0 (TID 30) in 21887 ms on 172.31.19.187 (17/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 41.0 in stage 1.0 (TID 63, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 19.0 in stage 1.0 (TID 41) in 22012 ms on 172.31.19.188 (18/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 42.0 in stage 1.0 (TID 64, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 10.0 in stage 1.0 (TID 32) in 22239 ms on 172.31.19.180 (19/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 43.0 in stage 1.0 (TID 65, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 20.0 in stage 1.0 (TID 42) in 22243 ms on 172.31.19.187 (20/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 44.0 in stage 1.0 (TID 66, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Starting task 45.0 in stage 1.0 (TID 67, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 7.0 in stage 1.0 (TID 29) in 22767 ms on 172.31.19.188 (21/96)
+15/11/02 10:19:20 INFO scheduler.TaskSetManager: Finished task 22.0 in stage 1.0 (TID 44) in 22746 ms on 172.31.19.180 (22/96)
+15/11/02 10:19:21 INFO scheduler.TaskSetManager: Starting task 46.0 in stage 1.0 (TID 68, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:21 INFO scheduler.TaskSetManager: Finished task 12.0 in stage 1.0 (TID 34) in 23695 ms on 172.31.19.182 (23/96)
+15/11/02 10:19:22 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 1.0 (TID 22) in 24088 ms on 172.31.19.182 (24/96)
+15/11/02 10:19:22 INFO scheduler.TaskSetManager: Starting task 47.0 in stage 1.0 (TID 69, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:27 INFO storage.BlockManagerInfo: Added rdd_5_24 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:27 INFO storage.BlockManagerInfo: Added rdd_5_27 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:27 INFO storage.BlockManagerInfo: Added rdd_5_26 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:27 INFO storage.BlockManagerInfo: Added rdd_5_32 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:27 INFO storage.BlockManagerInfo: Added rdd_5_30 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_36 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_31 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_25 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_39 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_28 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_40 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_43 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_37 in memory on 172.31.19.181:54734 (size: 62.6 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_34 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_33 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_29 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:28 INFO storage.BlockManagerInfo: Added rdd_5_38 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:29 INFO storage.BlockManagerInfo: Added rdd_5_35 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:29 INFO storage.BlockManagerInfo: Added rdd_5_41 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:29 INFO storage.BlockManagerInfo: Added rdd_5_44 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:29 INFO storage.BlockManagerInfo: Added rdd_5_42 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:29 INFO storage.BlockManagerInfo: Added rdd_5_45 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:30 INFO storage.BlockManagerInfo: Added rdd_5_47 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 2.9 GB)
+15/11/02 10:19:30 INFO storage.BlockManagerInfo: Added rdd_5_46 in memory on 172.31.19.182:58446 (size: 62.6 MB, free: 2.9 GB)
+15/11/02 10:19:36 INFO scheduler.TaskSetManager: Starting task 48.0 in stage 1.0 (TID 70, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:36 INFO scheduler.TaskSetManager: Finished task 24.0 in stage 1.0 (TID 46) in 18267 ms on 172.31.19.186 (25/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 49.0 in stage 1.0 (TID 71, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 26.0 in stage 1.0 (TID 48) in 18489 ms on 172.31.19.184 (26/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 50.0 in stage 1.0 (TID 72, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 27.0 in stage 1.0 (TID 49) in 18513 ms on 172.31.19.186 (27/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 32.0 in stage 1.0 (TID 54) in 18033 ms on 172.31.19.184 (28/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 51.0 in stage 1.0 (TID 73, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 34.0 in stage 1.0 (TID 56) in 17741 ms on 172.31.19.183 (29/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 52.0 in stage 1.0 (TID 74, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 53.0 in stage 1.0 (TID 75, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 37.0 in stage 1.0 (TID 59) in 17677 ms on 172.31.19.181 (30/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 54.0 in stage 1.0 (TID 76, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 25.0 in stage 1.0 (TID 47) in 19073 ms on 172.31.19.185 (31/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 55.0 in stage 1.0 (TID 77, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 30.0 in stage 1.0 (TID 52) in 18558 ms on 172.31.19.190 (32/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 56.0 in stage 1.0 (TID 78, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 36.0 in stage 1.0 (TID 58) in 18023 ms on 172.31.19.179 (33/96)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Starting task 57.0 in stage 1.0 (TID 79, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:37 INFO scheduler.TaskSetManager: Finished task 31.0 in stage 1.0 (TID 53) in 18407 ms on 172.31.19.179 (34/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 58.0 in stage 1.0 (TID 80, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 33.0 in stage 1.0 (TID 55) in 18557 ms on 172.31.19.181 (35/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 59.0 in stage 1.0 (TID 81, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 43.0 in stage 1.0 (TID 65) in 17539 ms on 172.31.19.187 (36/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 60.0 in stage 1.0 (TID 82, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 28.0 in stage 1.0 (TID 50) in 19356 ms on 172.31.19.185 (37/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 61.0 in stage 1.0 (TID 83, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 38.0 in stage 1.0 (TID 60) in 18279 ms on 172.31.19.183 (38/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 62.0 in stage 1.0 (TID 84, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 40.0 in stage 1.0 (TID 62) in 18394 ms on 172.31.19.187 (39/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 41.0 in stage 1.0 (TID 63) in 18257 ms on 172.31.19.188 (40/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 63.0 in stage 1.0 (TID 85, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 64.0 in stage 1.0 (TID 86, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 39.0 in stage 1.0 (TID 61) in 18569 ms on 172.31.19.189 (41/96)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Starting task 65.0 in stage 1.0 (TID 87, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:38 INFO scheduler.TaskSetManager: Finished task 29.0 in stage 1.0 (TID 51) in 19819 ms on 172.31.19.190 (42/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 66.0 in stage 1.0 (TID 88, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 42.0 in stage 1.0 (TID 64) in 18662 ms on 172.31.19.180 (43/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 67.0 in stage 1.0 (TID 89, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 44.0 in stage 1.0 (TID 66) in 18280 ms on 172.31.19.188 (44/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 68.0 in stage 1.0 (TID 90, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 47.0 in stage 1.0 (TID 69) in 17290 ms on 172.31.19.182 (45/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 69.0 in stage 1.0 (TID 91, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 45.0 in stage 1.0 (TID 67) in 18629 ms on 172.31.19.180 (46/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 70.0 in stage 1.0 (TID 92, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 35.0 in stage 1.0 (TID 57) in 19957 ms on 172.31.19.189 (47/96)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Starting task 71.0 in stage 1.0 (TID 93, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:39 INFO scheduler.TaskSetManager: Finished task 46.0 in stage 1.0 (TID 68) in 17920 ms on 172.31.19.182 (48/96)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_48 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_50 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_51 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_49 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_54 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:45 INFO storage.BlockManagerInfo: Added rdd_5_58 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_57 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_52 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_55 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_63 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_53 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_59 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_60 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:46 INFO storage.BlockManagerInfo: Added rdd_5_61 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_56 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_62 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_64 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_67 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_65 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_66 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:47 INFO storage.BlockManagerInfo: Added rdd_5_69 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:48 INFO storage.BlockManagerInfo: Added rdd_5_70 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:48 INFO storage.BlockManagerInfo: Added rdd_5_71 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 2.8 GB)
+15/11/02 10:19:48 INFO storage.BlockManagerInfo: Added rdd_5_68 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Starting task 72.0 in stage 1.0 (TID 94, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Finished task 48.0 in stage 1.0 (TID 70) in 17423 ms on 172.31.19.186 (49/96)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Starting task 73.0 in stage 1.0 (TID 95, 172.31.19.186, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Finished task 50.0 in stage 1.0 (TID 72) in 17407 ms on 172.31.19.186 (50/96)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Starting task 74.0 in stage 1.0 (TID 96, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Finished task 51.0 in stage 1.0 (TID 73) in 17296 ms on 172.31.19.184 (51/96)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Starting task 75.0 in stage 1.0 (TID 97, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:54 INFO scheduler.TaskSetManager: Finished task 54.0 in stage 1.0 (TID 76) in 17279 ms on 172.31.19.185 (52/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 76.0 in stage 1.0 (TID 98, 172.31.19.184, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 49.0 in stage 1.0 (TID 71) in 18023 ms on 172.31.19.184 (53/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 77.0 in stage 1.0 (TID 99, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 52.0 in stage 1.0 (TID 74) in 17732 ms on 172.31.19.183 (54/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 78.0 in stage 1.0 (TID 100, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 58.0 in stage 1.0 (TID 80) in 17291 ms on 172.31.19.181 (55/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 79.0 in stage 1.0 (TID 101, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 57.0 in stage 1.0 (TID 79) in 17627 ms on 172.31.19.179 (56/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 80.0 in stage 1.0 (TID 102, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 59.0 in stage 1.0 (TID 81) in 17464 ms on 172.31.19.187 (57/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 81.0 in stage 1.0 (TID 103, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 55.0 in stage 1.0 (TID 77) in 17882 ms on 172.31.19.190 (58/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 63.0 in stage 1.0 (TID 85) in 17050 ms on 172.31.19.188 (59/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 82.0 in stage 1.0 (TID 104, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 83.0 in stage 1.0 (TID 105, 172.31.19.181, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 53.0 in stage 1.0 (TID 75) in 18381 ms on 172.31.19.181 (60/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 84.0 in stage 1.0 (TID 106, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 60.0 in stage 1.0 (TID 82) in 17782 ms on 172.31.19.185 (61/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 85.0 in stage 1.0 (TID 107, 172.31.19.179, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 56.0 in stage 1.0 (TID 78) in 18244 ms on 172.31.19.179 (62/96)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Starting task 86.0 in stage 1.0 (TID 108, 172.31.19.187, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:55 INFO scheduler.TaskSetManager: Finished task 62.0 in stage 1.0 (TID 84) in 17502 ms on 172.31.19.187 (63/96)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Starting task 87.0 in stage 1.0 (TID 109, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Finished task 64.0 in stage 1.0 (TID 86) in 17747 ms on 172.31.19.189 (64/96)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Starting task 88.0 in stage 1.0 (TID 110, 172.31.19.183, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Finished task 61.0 in stage 1.0 (TID 83) in 18338 ms on 172.31.19.183 (65/96)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Starting task 89.0 in stage 1.0 (TID 111, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Finished task 66.0 in stage 1.0 (TID 88) in 17617 ms on 172.31.19.180 (66/96)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Starting task 90.0 in stage 1.0 (TID 112, 172.31.19.190, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:56 INFO scheduler.TaskSetManager: Finished task 65.0 in stage 1.0 (TID 87) in 17870 ms on 172.31.19.190 (67/96)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Starting task 91.0 in stage 1.0 (TID 113, 172.31.19.180, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Finished task 69.0 in stage 1.0 (TID 91) in 17860 ms on 172.31.19.180 (68/96)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Starting task 92.0 in stage 1.0 (TID 114, 172.31.19.189, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Finished task 70.0 in stage 1.0 (TID 92) in 17907 ms on 172.31.19.189 (69/96)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Starting task 93.0 in stage 1.0 (TID 115, 172.31.19.188, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:57 INFO scheduler.TaskSetManager: Finished task 67.0 in stage 1.0 (TID 89) in 18536 ms on 172.31.19.188 (70/96)
+15/11/02 10:19:58 INFO scheduler.TaskSetManager: Starting task 94.0 in stage 1.0 (TID 116, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:58 INFO scheduler.TaskSetManager: Finished task 71.0 in stage 1.0 (TID 93) in 18458 ms on 172.31.19.182 (71/96)
+15/11/02 10:19:58 INFO scheduler.TaskSetManager: Starting task 95.0 in stage 1.0 (TID 117, 172.31.19.182, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:19:58 INFO scheduler.TaskSetManager: Finished task 68.0 in stage 1.0 (TID 90) in 19231 ms on 172.31.19.182 (72/96)
+15/11/02 10:20:02 INFO storage.BlockManagerInfo: Added rdd_5_73 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:02 INFO storage.BlockManagerInfo: Added rdd_5_72 in memory on 172.31.19.186:50161 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:02 INFO storage.BlockManagerInfo: Added rdd_5_76 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:02 INFO storage.BlockManagerInfo: Added rdd_5_74 in memory on 172.31.19.184:52954 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_75 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_77 in memory on 172.31.19.183:52244 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_78 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_80 in memory on 172.31.19.187:44237 (size: 62.6 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_85 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_79 in memory on 172.31.19.179:53861 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_88 in memory on 172.31.19.183:52244 (size: 62.6 MB, free: 2.6 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_81 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:03 INFO storage.BlockManagerInfo: Added rdd_5_83 in memory on 172.31.19.181:54734 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:04 INFO storage.BlockManagerInfo: Added rdd_5_84 in memory on 172.31.19.185:60084 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:04 INFO storage.BlockManagerInfo: Added rdd_5_82 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:04 INFO storage.BlockManagerInfo: Added rdd_5_87 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:04 INFO storage.BlockManagerInfo: Added rdd_5_86 in memory on 172.31.19.187:44237 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:05 INFO storage.BlockManagerInfo: Added rdd_5_89 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:05 INFO storage.BlockManagerInfo: Added rdd_5_90 in memory on 172.31.19.190:50266 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:05 INFO storage.BlockManagerInfo: Added rdd_5_91 in memory on 172.31.19.180:43927 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:05 INFO storage.BlockManagerInfo: Added rdd_5_93 in memory on 172.31.19.188:33650 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:06 INFO storage.BlockManagerInfo: Added rdd_5_92 in memory on 172.31.19.189:49707 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:06 INFO storage.BlockManagerInfo: Added rdd_5_94 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 2.7 GB)
+15/11/02 10:20:07 INFO storage.BlockManagerInfo: Added rdd_5_95 in memory on 172.31.19.182:58446 (size: 62.5 MB, free: 2.6 GB)
+15/11/02 10:20:11 INFO scheduler.TaskSetManager: Finished task 73.0 in stage 1.0 (TID 95) in 17075 ms on 172.31.19.186 (73/96)
+15/11/02 10:20:11 INFO scheduler.TaskSetManager: Finished task 72.0 in stage 1.0 (TID 94) in 17771 ms on 172.31.19.186 (74/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 76.0 in stage 1.0 (TID 98) in 16896 ms on 172.31.19.184 (75/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 78.0 in stage 1.0 (TID 100) in 16816 ms on 172.31.19.181 (76/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 74.0 in stage 1.0 (TID 96) in 17500 ms on 172.31.19.184 (77/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 75.0 in stage 1.0 (TID 97) in 17821 ms on 172.31.19.185 (78/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 81.0 in stage 1.0 (TID 103) in 17205 ms on 172.31.19.190 (79/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 77.0 in stage 1.0 (TID 99) in 17619 ms on 172.31.19.183 (80/96)
+15/11/02 10:20:12 INFO scheduler.TaskSetManager: Finished task 80.0 in stage 1.0 (TID 102) in 17487 ms on 172.31.19.187 (81/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 88.0 in stage 1.0 (TID 110) in 16475 ms on 172.31.19.183 (82/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 84.0 in stage 1.0 (TID 106) in 17226 ms on 172.31.19.185 (83/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 83.0 in stage 1.0 (TID 105) in 17289 ms on 172.31.19.181 (84/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 79.0 in stage 1.0 (TID 101) in 17800 ms on 172.31.19.179 (85/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 85.0 in stage 1.0 (TID 107) in 17216 ms on 172.31.19.179 (86/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 82.0 in stage 1.0 (TID 104) in 17995 ms on 172.31.19.188 (87/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 86.0 in stage 1.0 (TID 108) in 17610 ms on 172.31.19.187 (88/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 90.0 in stage 1.0 (TID 112) in 17090 ms on 172.31.19.190 (89/96)
+15/11/02 10:20:13 INFO scheduler.TaskSetManager: Finished task 89.0 in stage 1.0 (TID 111) in 17218 ms on 172.31.19.180 (90/96)
+15/11/02 10:20:14 INFO scheduler.TaskSetManager: Finished task 87.0 in stage 1.0 (TID 109) in 17831 ms on 172.31.19.189 (91/96)
+15/11/02 10:20:14 INFO scheduler.TaskSetManager: Finished task 93.0 in stage 1.0 (TID 115) in 16649 ms on 172.31.19.188 (92/96)
+15/11/02 10:20:14 INFO scheduler.TaskSetManager: Finished task 91.0 in stage 1.0 (TID 113) in 17230 ms on 172.31.19.180 (93/96)
+15/11/02 10:20:15 INFO scheduler.TaskSetManager: Finished task 92.0 in stage 1.0 (TID 114) in 17707 ms on 172.31.19.189 (94/96)
+15/11/02 10:20:15 INFO scheduler.TaskSetManager: Finished task 94.0 in stage 1.0 (TID 116) in 17412 ms on 172.31.19.182 (95/96)
+15/11/02 10:20:15 INFO scheduler.TaskSetManager: Finished task 95.0 in stage 1.0 (TID 117) in 17176 ms on 172.31.19.182 (96/96)
+15/11/02 10:20:15 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+15/11/02 10:20:15 INFO scheduler.DAGScheduler: ResultStage 1 (count at /root/spark_flight_analysis.py:15) finished in 77.788 s
+15/11/02 10:20:15 INFO scheduler.DAGScheduler: Job 0 finished: count at /root/spark_flight_analysis.py:15, took 262.976106 s
+Query start/stop times...
+10:20:16
+10:20:16
+Delay binning start/stop times...
+10:20:16
+15/11/02 10:20:16 INFO spark.SparkContext: Starting job: runJob at PythonRDD.scala:393
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Registering RDD 8 (reduceByKey at /root/spark_flight_analysis.py:55)
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Got job 1 (runJob at PythonRDD.scala:393) with 1 output partitions
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Final stage: ResultStage 4(runJob at PythonRDD.scala:393)
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Parents of final stage: List(ShuffleMapStage 3)
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Missing parents: List(ShuffleMapStage 3)
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Submitting ShuffleMapStage 3 (PairwiseRDD[8] at reduceByKey at /root/spark_flight_analysis.py:55), which has no missing parents
+15/11/02 10:20:16 INFO storage.MemoryStore: ensureFreeSpace(7712) called with curMem=60644, maxMem=556038881
+15/11/02 10:20:16 INFO storage.MemoryStore: Block broadcast_3 stored as values in memory (estimated size 7.5 KB, free 530.2 MB)
+15/11/02 10:20:16 INFO storage.MemoryStore: ensureFreeSpace(4966) called with curMem=68356, maxMem=556038881
+15/11/02 10:20:16 INFO storage.MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 4.8 KB, free 530.2 MB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.30.136:42792 (size: 4.8 KB, free: 530.3 MB)
+15/11/02 10:20:16 INFO spark.SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:861
+15/11/02 10:20:16 INFO scheduler.DAGScheduler: Submitting 96 missing tasks from ShuffleMapStage 3 (PairwiseRDD[8] at reduceByKey at /root/spark_flight_analysis.py:55)
+15/11/02 10:20:16 INFO scheduler.TaskSchedulerImpl: Adding task set 3.0 with 96 tasks
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 9.0 in stage 3.0 (TID 118, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 11.0 in stage 3.0 (TID 119, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 3.0 (TID 120, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 5.0 in stage 3.0 (TID 121, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 7.0 in stage 3.0 (TID 122, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 6.0 in stage 3.0 (TID 123, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 3.0 (TID 124, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 10.0 in stage 3.0 (TID 125, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 8.0 in stage 3.0 (TID 126, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 3.0 (TID 127, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 3.0 (TID 128, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 3.0 (TID 129, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 21.0 in stage 3.0 (TID 130, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 23.0 in stage 3.0 (TID 131, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 16.0 in stage 3.0 (TID 132, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 17.0 in stage 3.0 (TID 133, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 19.0 in stage 3.0 (TID 134, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 18.0 in stage 3.0 (TID 135, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 14.0 in stage 3.0 (TID 136, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 22.0 in stage 3.0 (TID 137, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 20.0 in stage 3.0 (TID 138, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 12.0 in stage 3.0 (TID 139, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 15.0 in stage 3.0 (TID 140, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO scheduler.TaskSetManager: Starting task 13.0 in stage 3.0 (TID 141, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.190:50266 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.185:60084 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.179:53861 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.184:52954 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.187:44237 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.183:52244 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.186:50161 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.180:43927 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.188:33650 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.182:58446 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.181:54734 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:20:16 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.31.19.189:49707 (size: 4.8 KB, free: 2.6 GB)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Starting task 25.0 in stage 3.0 (TID 142, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Finished task 21.0 in stage 3.0 (TID 130) in 55920 ms on 172.31.19.185 (1/96)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Starting task 34.0 in stage 3.0 (TID 143, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Finished task 5.0 in stage 3.0 (TID 121) in 56251 ms on 172.31.19.183 (2/96)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Starting task 38.0 in stage 3.0 (TID 144, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Finished task 17.0 in stage 3.0 (TID 133) in 56254 ms on 172.31.19.183 (3/96)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Starting task 31.0 in stage 3.0 (TID 145, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Finished task 15.0 in stage 3.0 (TID 140) in 56785 ms on 172.31.19.179 (4/96)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 3.0 (TID 128) in 56798 ms on 172.31.19.179 (5/96)
+15/11/02 10:21:12 INFO scheduler.TaskSetManager: Starting task 36.0 in stage 3.0 (TID 146, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 42.0 in stage 3.0 (TID 147, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 22.0 in stage 3.0 (TID 137) in 57005 ms on 172.31.19.180 (6/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 45.0 in stage 3.0 (TID 148, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 10.0 in stage 3.0 (TID 125) in 57019 ms on 172.31.19.180 (7/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 24.0 in stage 3.0 (TID 149, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 18.0 in stage 3.0 (TID 135) in 57045 ms on 172.31.19.186 (8/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 27.0 in stage 3.0 (TID 150, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 6.0 in stage 3.0 (TID 123) in 57129 ms on 172.31.19.186 (9/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 26.0 in stage 3.0 (TID 151, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 3.0 (TID 120) in 57213 ms on 172.31.19.184 (10/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 32.0 in stage 3.0 (TID 152, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 16.0 in stage 3.0 (TID 132) in 57223 ms on 172.31.19.184 (11/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 8.0 in stage 3.0 (TID 126) in 57368 ms on 172.31.19.187 (12/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 40.0 in stage 3.0 (TID 153, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 43.0 in stage 3.0 (TID 154, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 20.0 in stage 3.0 (TID 138) in 57361 ms on 172.31.19.187 (13/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 29.0 in stage 3.0 (TID 155, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 11.0 in stage 3.0 (TID 119) in 57401 ms on 172.31.19.190 (14/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 30.0 in stage 3.0 (TID 156, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 23.0 in stage 3.0 (TID 131) in 57616 ms on 172.31.19.190 (15/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 33.0 in stage 3.0 (TID 157, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 3.0 (TID 124) in 57672 ms on 172.31.19.181 (16/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 37.0 in stage 3.0 (TID 158, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 14.0 in stage 3.0 (TID 136) in 57666 ms on 172.31.19.181 (17/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 41.0 in stage 3.0 (TID 159, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 19.0 in stage 3.0 (TID 134) in 57781 ms on 172.31.19.188 (18/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 44.0 in stage 3.0 (TID 160, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 7.0 in stage 3.0 (TID 122) in 57794 ms on 172.31.19.188 (19/96)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Starting task 28.0 in stage 3.0 (TID 161, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:13 INFO scheduler.TaskSetManager: Finished task 9.0 in stage 3.0 (TID 118) in 57889 ms on 172.31.19.185 (20/96)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Starting task 46.0 in stage 3.0 (TID 162, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 3.0 (TID 127) in 58522 ms on 172.31.19.182 (21/96)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Finished task 12.0 in stage 3.0 (TID 139) in 58513 ms on 172.31.19.182 (22/96)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Starting task 47.0 in stage 3.0 (TID 163, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Starting task 35.0 in stage 3.0 (TID 164, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Starting task 39.0 in stage 3.0 (TID 165, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 3.0 (TID 129) in 58735 ms on 172.31.19.189 (23/96)
+15/11/02 10:21:14 INFO scheduler.TaskSetManager: Finished task 13.0 in stage 3.0 (TID 141) in 58725 ms on 172.31.19.189 (24/96)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Starting task 54.0 in stage 3.0 (TID 166, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Finished task 25.0 in stage 3.0 (TID 142) in 54340 ms on 172.31.19.185 (25/96)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Starting task 52.0 in stage 3.0 (TID 167, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Finished task 34.0 in stage 3.0 (TID 143) in 54315 ms on 172.31.19.183 (26/96)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Starting task 61.0 in stage 3.0 (TID 168, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:06 INFO scheduler.TaskSetManager: Finished task 38.0 in stage 3.0 (TID 144) in 54465 ms on 172.31.19.183 (27/96)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Starting task 56.0 in stage 3.0 (TID 169, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Finished task 36.0 in stage 3.0 (TID 146) in 54452 ms on 172.31.19.179 (28/96)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Starting task 57.0 in stage 3.0 (TID 170, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Finished task 31.0 in stage 3.0 (TID 145) in 54856 ms on 172.31.19.179 (29/96)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Starting task 48.0 in stage 3.0 (TID 171, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:07 INFO scheduler.TaskSetManager: Finished task 24.0 in stage 3.0 (TID 149) in 54649 ms on 172.31.19.186 (30/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 66.0 in stage 3.0 (TID 172, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 45.0 in stage 3.0 (TID 148) in 54919 ms on 172.31.19.180 (31/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 50.0 in stage 3.0 (TID 173, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 27.0 in stage 3.0 (TID 150) in 55003 ms on 172.31.19.186 (32/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 60.0 in stage 3.0 (TID 174, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 28.0 in stage 3.0 (TID 161) in 54308 ms on 172.31.19.185 (33/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 69.0 in stage 3.0 (TID 175, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 42.0 in stage 3.0 (TID 147) in 55275 ms on 172.31.19.180 (34/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 49.0 in stage 3.0 (TID 176, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 32.0 in stage 3.0 (TID 152) in 55368 ms on 172.31.19.184 (35/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 55.0 in stage 3.0 (TID 177, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 29.0 in stage 3.0 (TID 155) in 55276 ms on 172.31.19.190 (36/96)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Starting task 59.0 in stage 3.0 (TID 178, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:08 INFO scheduler.TaskSetManager: Finished task 43.0 in stage 3.0 (TID 154) in 55410 ms on 172.31.19.187 (37/96)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Starting task 62.0 in stage 3.0 (TID 179, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Finished task 40.0 in stage 3.0 (TID 153) in 55723 ms on 172.31.19.187 (38/96)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Starting task 65.0 in stage 3.0 (TID 180, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Finished task 30.0 in stage 3.0 (TID 156) in 55868 ms on 172.31.19.190 (39/96)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Starting task 51.0 in stage 3.0 (TID 181, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:09 INFO scheduler.TaskSetManager: Finished task 26.0 in stage 3.0 (TID 151) in 56617 ms on 172.31.19.184 (40/96)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Starting task 68.0 in stage 3.0 (TID 182, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Finished task 47.0 in stage 3.0 (TID 163) in 55926 ms on 172.31.19.182 (41/96)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Starting task 71.0 in stage 3.0 (TID 183, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Finished task 46.0 in stage 3.0 (TID 162) in 56115 ms on 172.31.19.182 (42/96)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Starting task 53.0 in stage 3.0 (TID 184, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:10 INFO scheduler.TaskSetManager: Finished task 33.0 in stage 3.0 (TID 157) in 57100 ms on 172.31.19.181 (43/96)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Starting task 58.0 in stage 3.0 (TID 185, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Finished task 37.0 in stage 3.0 (TID 158) in 57638 ms on 172.31.19.181 (44/96)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Finished task 39.0 in stage 3.0 (TID 165) in 56577 ms on 172.31.19.189 (45/96)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Starting task 64.0 in stage 3.0 (TID 186, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Starting task 70.0 in stage 3.0 (TID 187, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Finished task 35.0 in stage 3.0 (TID 164) in 56601 ms on 172.31.19.189 (46/96)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Starting task 63.0 in stage 3.0 (TID 188, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Finished task 41.0 in stage 3.0 (TID 159) in 57581 ms on 172.31.19.188 (47/96)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Starting task 67.0 in stage 3.0 (TID 189, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:22:11 INFO scheduler.TaskSetManager: Finished task 44.0 in stage 3.0 (TID 160) in 57616 ms on 172.31.19.188 (48/96)
+15/11/02 10:23:00 INFO scheduler.TaskSetManager: Starting task 75.0 in stage 3.0 (TID 190, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:00 INFO scheduler.TaskSetManager: Finished task 54.0 in stage 3.0 (TID 166) in 54334 ms on 172.31.19.185 (49/96)
+15/11/02 10:23:00 INFO scheduler.TaskSetManager: Starting task 77.0 in stage 3.0 (TID 191, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:00 INFO scheduler.TaskSetManager: Finished task 52.0 in stage 3.0 (TID 167) in 54299 ms on 172.31.19.183 (50/96)
+15/11/02 10:23:01 INFO scheduler.TaskSetManager: Starting task 88.0 in stage 3.0 (TID 192, 172.31.19.183, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:01 INFO scheduler.TaskSetManager: Finished task 61.0 in stage 3.0 (TID 168) in 54690 ms on 172.31.19.183 (51/96)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Starting task 79.0 in stage 3.0 (TID 193, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Finished task 56.0 in stage 3.0 (TID 169) in 54957 ms on 172.31.19.179 (52/96)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Starting task 85.0 in stage 3.0 (TID 194, 172.31.19.179, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Finished task 57.0 in stage 3.0 (TID 170) in 54651 ms on 172.31.19.179 (53/96)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Starting task 72.0 in stage 3.0 (TID 195, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Finished task 48.0 in stage 3.0 (TID 171) in 54845 ms on 172.31.19.186 (54/96)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Starting task 73.0 in stage 3.0 (TID 196, 172.31.19.186, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Finished task 50.0 in stage 3.0 (TID 173) in 54570 ms on 172.31.19.186 (55/96)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Starting task 84.0 in stage 3.0 (TID 197, 172.31.19.185, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:02 INFO scheduler.TaskSetManager: Finished task 60.0 in stage 3.0 (TID 174) in 54543 ms on 172.31.19.185 (56/96)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Starting task 89.0 in stage 3.0 (TID 198, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Finished task 66.0 in stage 3.0 (TID 172) in 55044 ms on 172.31.19.180 (57/96)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Starting task 91.0 in stage 3.0 (TID 199, 172.31.19.180, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Finished task 69.0 in stage 3.0 (TID 175) in 55342 ms on 172.31.19.180 (58/96)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Starting task 74.0 in stage 3.0 (TID 200, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Finished task 49.0 in stage 3.0 (TID 176) in 55179 ms on 172.31.19.184 (59/96)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Starting task 81.0 in stage 3.0 (TID 201, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:03 INFO scheduler.TaskSetManager: Finished task 55.0 in stage 3.0 (TID 177) in 55107 ms on 172.31.19.190 (60/96)
+15/11/02 10:23:04 INFO scheduler.TaskSetManager: Starting task 80.0 in stage 3.0 (TID 202, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:04 INFO scheduler.TaskSetManager: Finished task 59.0 in stage 3.0 (TID 178) in 56075 ms on 172.31.19.187 (61/96)
+15/11/02 10:23:04 INFO scheduler.TaskSetManager: Starting task 86.0 in stage 3.0 (TID 203, 172.31.19.187, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:04 INFO scheduler.TaskSetManager: Finished task 62.0 in stage 3.0 (TID 179) in 55792 ms on 172.31.19.187 (62/96)
+15/11/02 10:23:05 INFO scheduler.TaskSetManager: Starting task 90.0 in stage 3.0 (TID 204, 172.31.19.190, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:05 INFO scheduler.TaskSetManager: Finished task 65.0 in stage 3.0 (TID 180) in 55761 ms on 172.31.19.190 (63/96)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Starting task 76.0 in stage 3.0 (TID 205, 172.31.19.184, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Finished task 51.0 in stage 3.0 (TID 181) in 56064 ms on 172.31.19.184 (64/96)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Finished task 71.0 in stage 3.0 (TID 183) in 55464 ms on 172.31.19.182 (65/96)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Starting task 94.0 in stage 3.0 (TID 206, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Starting task 78.0 in stage 3.0 (TID 207, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Finished task 53.0 in stage 3.0 (TID 184) in 55491 ms on 172.31.19.181 (66/96)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Starting task 95.0 in stage 3.0 (TID 208, 172.31.19.182, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:06 INFO scheduler.TaskSetManager: Finished task 68.0 in stage 3.0 (TID 182) in 55911 ms on 172.31.19.182 (67/96)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Starting task 87.0 in stage 3.0 (TID 209, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Finished task 64.0 in stage 3.0 (TID 186) in 55614 ms on 172.31.19.189 (68/96)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Starting task 82.0 in stage 3.0 (TID 210, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Finished task 63.0 in stage 3.0 (TID 188) in 55671 ms on 172.31.19.188 (69/96)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Starting task 93.0 in stage 3.0 (TID 211, 172.31.19.188, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Finished task 67.0 in stage 3.0 (TID 189) in 55653 ms on 172.31.19.188 (70/96)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Starting task 83.0 in stage 3.0 (TID 212, 172.31.19.181, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:07 INFO scheduler.TaskSetManager: Finished task 58.0 in stage 3.0 (TID 185) in 56568 ms on 172.31.19.181 (71/96)
+15/11/02 10:23:08 INFO scheduler.TaskSetManager: Starting task 92.0 in stage 3.0 (TID 213, 172.31.19.189, PROCESS_LOCAL, 2226 bytes)
+15/11/02 10:23:08 INFO scheduler.TaskSetManager: Finished task 70.0 in stage 3.0 (TID 187) in 56818 ms on 172.31.19.189 (72/96)
+15/11/02 10:23:54 INFO scheduler.TaskSetManager: Finished task 75.0 in stage 3.0 (TID 190) in 54196 ms on 172.31.19.185 (73/96)
+15/11/02 10:23:55 INFO scheduler.TaskSetManager: Finished task 77.0 in stage 3.0 (TID 191) in 54626 ms on 172.31.19.183 (74/96)
+15/11/02 10:23:56 INFO scheduler.TaskSetManager: Finished task 88.0 in stage 3.0 (TID 192) in 54605 ms on 172.31.19.183 (75/96)
+15/11/02 10:23:56 INFO scheduler.TaskSetManager: Finished task 79.0 in stage 3.0 (TID 193) in 54319 ms on 172.31.19.179 (76/96)
+15/11/02 10:23:57 INFO scheduler.TaskSetManager: Finished task 84.0 in stage 3.0 (TID 197) in 54230 ms on 172.31.19.185 (77/96)
+15/11/02 10:23:57 INFO scheduler.TaskSetManager: Finished task 73.0 in stage 3.0 (TID 196) in 54356 ms on 172.31.19.186 (78/96)
+15/11/02 10:23:57 INFO scheduler.TaskSetManager: Finished task 85.0 in stage 3.0 (TID 194) in 54942 ms on 172.31.19.179 (79/96)
+15/11/02 10:23:57 INFO scheduler.TaskSetManager: Finished task 72.0 in stage 3.0 (TID 195) in 54778 ms on 172.31.19.186 (80/96)
+15/11/02 10:23:58 INFO scheduler.TaskSetManager: Finished task 89.0 in stage 3.0 (TID 198) in 55076 ms on 172.31.19.180 (81/96)
+15/11/02 10:23:58 INFO scheduler.TaskSetManager: Finished task 74.0 in stage 3.0 (TID 200) in 54912 ms on 172.31.19.184 (82/96)
+15/11/02 10:23:59 INFO scheduler.TaskSetManager: Finished task 81.0 in stage 3.0 (TID 201) in 55129 ms on 172.31.19.190 (83/96)
+15/11/02 10:23:59 INFO scheduler.TaskSetManager: Finished task 91.0 in stage 3.0 (TID 199) in 55656 ms on 172.31.19.180 (84/96)
+15/11/02 10:24:00 INFO scheduler.TaskSetManager: Finished task 90.0 in stage 3.0 (TID 204) in 55266 ms on 172.31.19.190 (85/96)
+15/11/02 10:24:00 INFO scheduler.TaskSetManager: Finished task 76.0 in stage 3.0 (TID 205) in 54998 ms on 172.31.19.184 (86/96)
+15/11/02 10:24:01 INFO scheduler.TaskSetManager: Finished task 78.0 in stage 3.0 (TID 207) in 55364 ms on 172.31.19.181 (87/96)
+15/11/02 10:24:02 INFO scheduler.TaskSetManager: Finished task 86.0 in stage 3.0 (TID 203) in 57091 ms on 172.31.19.187 (88/96)
+15/11/02 10:24:02 INFO scheduler.TaskSetManager: Finished task 80.0 in stage 3.0 (TID 202) in 57139 ms on 172.31.19.187 (89/96)
+15/11/02 10:24:02 INFO scheduler.TaskSetManager: Finished task 93.0 in stage 3.0 (TID 211) in 55092 ms on 172.31.19.188 (90/96)
+15/11/02 10:24:03 INFO scheduler.TaskSetManager: Finished task 82.0 in stage 3.0 (TID 210) in 55867 ms on 172.31.19.188 (91/96)
+15/11/02 10:24:03 INFO scheduler.TaskSetManager: Finished task 87.0 in stage 3.0 (TID 209) in 56269 ms on 172.31.19.189 (92/96)
+15/11/02 10:24:03 INFO scheduler.TaskSetManager: Finished task 83.0 in stage 3.0 (TID 212) in 55540 ms on 172.31.19.181 (93/96)
+15/11/02 10:24:04 INFO scheduler.TaskSetManager: Finished task 92.0 in stage 3.0 (TID 213) in 56707 ms on 172.31.19.189 (94/96)
+15/11/02 10:24:05 INFO scheduler.TaskSetManager: Finished task 94.0 in stage 3.0 (TID 206) in 59486 ms on 172.31.19.182 (95/96)
+15/11/02 10:24:06 INFO scheduler.TaskSetManager: Finished task 95.0 in stage 3.0 (TID 208) in 60062 ms on 172.31.19.182 (96/96)
+15/11/02 10:24:06 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: ShuffleMapStage 3 (reduceByKey at /root/spark_flight_analysis.py:55) finished in 230.432 s
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: looking for newly runnable stages
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: running: Set()
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: waiting: Set(ResultStage 4)
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: failed: Set()
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: Missing parents for ResultStage 4: List()
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: Submitting ResultStage 4 (PythonRDD[11] at RDD at PythonRDD.scala:43), which is now runnable
+15/11/02 10:24:06 INFO storage.MemoryStore: ensureFreeSpace(5640) called with curMem=73322, maxMem=556038881
+15/11/02 10:24:06 INFO storage.MemoryStore: Block broadcast_4 stored as values in memory (estimated size 5.5 KB, free 530.2 MB)
+15/11/02 10:24:06 INFO storage.MemoryStore: ensureFreeSpace(3659) called with curMem=78962, maxMem=556038881
+15/11/02 10:24:06 INFO storage.MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 3.6 KB, free 530.2 MB)
+15/11/02 10:24:06 INFO storage.BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.31.30.136:42792 (size: 3.6 KB, free: 530.3 MB)
+15/11/02 10:24:06 INFO spark.SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:861
+15/11/02 10:24:06 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 4 (PythonRDD[11] at RDD at PythonRDD.scala:43)
+15/11/02 10:24:06 INFO scheduler.TaskSchedulerImpl: Adding task set 4.0 with 1 tasks
+15/11/02 10:24:06 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 4.0 (TID 214, 172.31.19.180, PROCESS_LOCAL, 1968 bytes)
+15/11/02 10:24:06 INFO storage.BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.31.19.180:43927 (size: 3.6 KB, free: 2.6 GB)
+15/11/02 10:24:06 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.180:42445
+15/11/02 10:24:06 INFO spark.MapOutputTrackerMaster: Size of output statuses for shuffle 1 is 1066 bytes
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 4.0 (TID 214) in 7499 ms on 172.31.19.180 (1/1)
+15/11/02 10:24:14 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: ResultStage 4 (runJob at PythonRDD.scala:393) finished in 7.500 s
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Job 1 finished: runJob at PythonRDD.scala:393, took 238.007828 s
+[('EA-ATL-MLB-12-2-17', (0, 0, 0, 9))]
+10:24:14
+15/11/02 10:24:14 INFO spark.SparkContext: Starting job: saveAsTextFile at NativeMethodAccessorImpl.java:-2
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 322 bytes
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Registering RDD 13 (repartition at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Got job 2 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) with 1 output partitions
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Final stage: ResultStage 8(saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Parents of final stage: List(ShuffleMapStage 7)
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Missing parents: List(ShuffleMapStage 7)
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Submitting ShuffleMapStage 7 (MapPartitionsRDD[13] at repartition at NativeMethodAccessorImpl.java:-2), which has no missing parents
+15/11/02 10:24:14 INFO storage.MemoryStore: ensureFreeSpace(6248) called with curMem=82621, maxMem=556038881
+15/11/02 10:24:14 INFO storage.MemoryStore: Block broadcast_5 stored as values in memory (estimated size 6.1 KB, free 530.2 MB)
+15/11/02 10:24:14 INFO storage.MemoryStore: ensureFreeSpace(3911) called with curMem=88869, maxMem=556038881
+15/11/02 10:24:14 INFO storage.MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 3.8 KB, free 530.2 MB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.30.136:42792 (size: 3.8 KB, free: 530.3 MB)
+15/11/02 10:24:14 INFO spark.SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:861
+15/11/02 10:24:14 INFO scheduler.DAGScheduler: Submitting 96 missing tasks from ShuffleMapStage 7 (MapPartitionsRDD[13] at repartition at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:24:14 INFO scheduler.TaskSchedulerImpl: Adding task set 7.0 with 96 tasks
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 7.0 (TID 215, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 7.0 (TID 216, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 7.0 (TID 217, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 7.0 (TID 218, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 7.0 (TID 219, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 5.0 in stage 7.0 (TID 220, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 6.0 in stage 7.0 (TID 221, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 7.0 in stage 7.0 (TID 222, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 8.0 in stage 7.0 (TID 223, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 9.0 in stage 7.0 (TID 224, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 10.0 in stage 7.0 (TID 225, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 11.0 in stage 7.0 (TID 226, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 12.0 in stage 7.0 (TID 227, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 13.0 in stage 7.0 (TID 228, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 14.0 in stage 7.0 (TID 229, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 15.0 in stage 7.0 (TID 230, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 16.0 in stage 7.0 (TID 231, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 17.0 in stage 7.0 (TID 232, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 18.0 in stage 7.0 (TID 233, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 19.0 in stage 7.0 (TID 234, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 20.0 in stage 7.0 (TID 235, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 21.0 in stage 7.0 (TID 236, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 22.0 in stage 7.0 (TID 237, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO scheduler.TaskSetManager: Starting task 23.0 in stage 7.0 (TID 238, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.187:44237 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.183:52244 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.181:54734 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.184:52954 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.182:58446 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.188:33650 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.184:46999
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.180:43927 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.186:50161 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.189:49707 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.183:45669
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.190:50266 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.181:40239
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.185:60084 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.187:37622
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.188:40727
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.182:35540
+15/11/02 10:24:14 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.31.19.179:53861 (size: 3.8 KB, free: 2.6 GB)
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.179:55926
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.186:52357
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.189:40598
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.190:46379
+15/11/02 10:24:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.31.19.185:33586
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 24.0 in stage 7.0 (TID 239, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 8.0 in stage 7.0 (TID 223) in 13501 ms on 172.31.19.179 (1/96)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 25.0 in stage 7.0 (TID 240, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 7.0 (TID 217) in 13535 ms on 172.31.19.183 (2/96)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 26.0 in stage 7.0 (TID 241, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 19.0 in stage 7.0 (TID 234) in 13609 ms on 172.31.19.186 (3/96)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 27.0 in stage 7.0 (TID 242, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 15.0 in stage 7.0 (TID 230) in 13644 ms on 172.31.19.184 (4/96)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 28.0 in stage 7.0 (TID 243, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 10.0 in stage 7.0 (TID 225) in 13651 ms on 172.31.19.180 (5/96)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Starting task 29.0 in stage 7.0 (TID 244, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:27 INFO scheduler.TaskSetManager: Finished task 20.0 in stage 7.0 (TID 235) in 13645 ms on 172.31.19.179 (6/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 30.0 in stage 7.0 (TID 245, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 7.0 in stage 7.0 (TID 222) in 13685 ms on 172.31.19.186 (7/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 31.0 in stage 7.0 (TID 246, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 22.0 in stage 7.0 (TID 237) in 13691 ms on 172.31.19.180 (8/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 32.0 in stage 7.0 (TID 247, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 7.0 (TID 215) in 13726 ms on 172.31.19.187 (9/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 33.0 in stage 7.0 (TID 248, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 11.0 in stage 7.0 (TID 226) in 13776 ms on 172.31.19.185 (10/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 34.0 in stage 7.0 (TID 249, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 5.0 in stage 7.0 (TID 220) in 13796 ms on 172.31.19.189 (11/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 35.0 in stage 7.0 (TID 250, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 6.0 in stage 7.0 (TID 221) in 13863 ms on 172.31.19.188 (12/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 36.0 in stage 7.0 (TID 251, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 14.0 in stage 7.0 (TID 229) in 13869 ms on 172.31.19.183 (13/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 37.0 in stage 7.0 (TID 252, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 13.0 in stage 7.0 (TID 228) in 13926 ms on 172.31.19.181 (14/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 38.0 in stage 7.0 (TID 253, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 18.0 in stage 7.0 (TID 233) in 13966 ms on 172.31.19.188 (15/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 39.0 in stage 7.0 (TID 254, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 12.0 in stage 7.0 (TID 227) in 14113 ms on 172.31.19.187 (16/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 40.0 in stage 7.0 (TID 255, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 7.0 (TID 218) in 14139 ms on 172.31.19.184 (17/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 41.0 in stage 7.0 (TID 256, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 17.0 in stage 7.0 (TID 232) in 14292 ms on 172.31.19.189 (18/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 42.0 in stage 7.0 (TID 257, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 9.0 in stage 7.0 (TID 224) in 14304 ms on 172.31.19.190 (19/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 43.0 in stage 7.0 (TID 258, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 7.0 (TID 216) in 14383 ms on 172.31.19.181 (20/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 44.0 in stage 7.0 (TID 259, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 23.0 in stage 7.0 (TID 238) in 14443 ms on 172.31.19.185 (21/96)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Starting task 45.0 in stage 7.0 (TID 260, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:28 INFO scheduler.TaskSetManager: Finished task 21.0 in stage 7.0 (TID 236) in 14579 ms on 172.31.19.190 (22/96)
+15/11/02 10:24:29 INFO scheduler.TaskSetManager: Starting task 46.0 in stage 7.0 (TID 261, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:29 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 7.0 (TID 219) in 15163 ms on 172.31.19.182 (23/96)
+15/11/02 10:24:29 INFO scheduler.TaskSetManager: Starting task 47.0 in stage 7.0 (TID 262, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:29 INFO scheduler.TaskSetManager: Finished task 16.0 in stage 7.0 (TID 231) in 15390 ms on 172.31.19.182 (24/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 48.0 in stage 7.0 (TID 263, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 30.0 in stage 7.0 (TID 245) in 13292 ms on 172.31.19.186 (25/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 49.0 in stage 7.0 (TID 264, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 25.0 in stage 7.0 (TID 240) in 13475 ms on 172.31.19.183 (26/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 50.0 in stage 7.0 (TID 265, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 24.0 in stage 7.0 (TID 239) in 13510 ms on 172.31.19.179 (27/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 51.0 in stage 7.0 (TID 266, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 29.0 in stage 7.0 (TID 244) in 13355 ms on 172.31.19.179 (28/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 52.0 in stage 7.0 (TID 267, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 27.0 in stage 7.0 (TID 242) in 13627 ms on 172.31.19.184 (29/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 53.0 in stage 7.0 (TID 268, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 26.0 in stage 7.0 (TID 241) in 13669 ms on 172.31.19.186 (30/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 54.0 in stage 7.0 (TID 269, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 34.0 in stage 7.0 (TID 249) in 13527 ms on 172.31.19.189 (31/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 55.0 in stage 7.0 (TID 270, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 31.0 in stage 7.0 (TID 246) in 13712 ms on 172.31.19.180 (32/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 56.0 in stage 7.0 (TID 271, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 35.0 in stage 7.0 (TID 250) in 13566 ms on 172.31.19.188 (33/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 57.0 in stage 7.0 (TID 272, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 33.0 in stage 7.0 (TID 248) in 13658 ms on 172.31.19.185 (34/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 58.0 in stage 7.0 (TID 273, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 32.0 in stage 7.0 (TID 247) in 13899 ms on 172.31.19.187 (35/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 59.0 in stage 7.0 (TID 274, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 42.0 in stage 7.0 (TID 257) in 13326 ms on 172.31.19.190 (36/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 60.0 in stage 7.0 (TID 275, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 40.0 in stage 7.0 (TID 255) in 13509 ms on 172.31.19.184 (37/96)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Starting task 61.0 in stage 7.0 (TID 276, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:41 INFO scheduler.TaskSetManager: Finished task 36.0 in stage 7.0 (TID 251) in 13782 ms on 172.31.19.183 (38/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 62.0 in stage 7.0 (TID 277, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 28.0 in stage 7.0 (TID 243) in 14062 ms on 172.31.19.180 (39/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 63.0 in stage 7.0 (TID 278, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 39.0 in stage 7.0 (TID 254) in 13780 ms on 172.31.19.187 (40/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 64.0 in stage 7.0 (TID 279, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 44.0 in stage 7.0 (TID 259) in 13496 ms on 172.31.19.185 (41/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 65.0 in stage 7.0 (TID 280, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 37.0 in stage 7.0 (TID 252) in 14125 ms on 172.31.19.181 (42/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 66.0 in stage 7.0 (TID 281, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 43.0 in stage 7.0 (TID 258) in 13743 ms on 172.31.19.181 (43/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 67.0 in stage 7.0 (TID 282, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 38.0 in stage 7.0 (TID 253) in 14190 ms on 172.31.19.188 (44/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 68.0 in stage 7.0 (TID 283, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 41.0 in stage 7.0 (TID 256) in 13894 ms on 172.31.19.189 (45/96)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Starting task 69.0 in stage 7.0 (TID 284, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:42 INFO scheduler.TaskSetManager: Finished task 45.0 in stage 7.0 (TID 260) in 13900 ms on 172.31.19.190 (46/96)
+15/11/02 10:24:44 INFO scheduler.TaskSetManager: Starting task 70.0 in stage 7.0 (TID 285, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:44 INFO scheduler.TaskSetManager: Finished task 47.0 in stage 7.0 (TID 262) in 14808 ms on 172.31.19.182 (47/96)
+15/11/02 10:24:44 INFO scheduler.TaskSetManager: Starting task 71.0 in stage 7.0 (TID 286, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:44 INFO scheduler.TaskSetManager: Finished task 46.0 in stage 7.0 (TID 261) in 15372 ms on 172.31.19.182 (48/96)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Starting task 72.0 in stage 7.0 (TID 287, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Finished task 49.0 in stage 7.0 (TID 264) in 13270 ms on 172.31.19.183 (49/96)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Starting task 73.0 in stage 7.0 (TID 288, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Finished task 51.0 in stage 7.0 (TID 266) in 13377 ms on 172.31.19.179 (50/96)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Starting task 74.0 in stage 7.0 (TID 289, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:54 INFO scheduler.TaskSetManager: Finished task 48.0 in stage 7.0 (TID 263) in 13596 ms on 172.31.19.186 (51/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 75.0 in stage 7.0 (TID 290, 172.31.19.186, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 53.0 in stage 7.0 (TID 268) in 13427 ms on 172.31.19.186 (52/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 76.0 in stage 7.0 (TID 291, 172.31.19.179, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 50.0 in stage 7.0 (TID 265) in 13716 ms on 172.31.19.179 (53/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 77.0 in stage 7.0 (TID 292, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 54.0 in stage 7.0 (TID 269) in 13470 ms on 172.31.19.189 (54/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 78.0 in stage 7.0 (TID 293, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 52.0 in stage 7.0 (TID 267) in 13590 ms on 172.31.19.184 (55/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 79.0 in stage 7.0 (TID 294, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 55.0 in stage 7.0 (TID 270) in 13548 ms on 172.31.19.180 (56/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 80.0 in stage 7.0 (TID 295, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 57.0 in stage 7.0 (TID 272) in 13583 ms on 172.31.19.185 (57/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 56.0 in stage 7.0 (TID 271) in 13625 ms on 172.31.19.188 (58/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 81.0 in stage 7.0 (TID 296, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 82.0 in stage 7.0 (TID 297, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 59.0 in stage 7.0 (TID 274) in 13466 ms on 172.31.19.190 (59/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 83.0 in stage 7.0 (TID 298, 172.31.19.183, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 61.0 in stage 7.0 (TID 276) in 13448 ms on 172.31.19.183 (60/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 84.0 in stage 7.0 (TID 299, 172.31.19.184, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 60.0 in stage 7.0 (TID 275) in 13517 ms on 172.31.19.184 (61/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 85.0 in stage 7.0 (TID 300, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 58.0 in stage 7.0 (TID 273) in 13595 ms on 172.31.19.187 (62/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 86.0 in stage 7.0 (TID 301, 172.31.19.185, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 64.0 in stage 7.0 (TID 279) in 13470 ms on 172.31.19.185 (63/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 87.0 in stage 7.0 (TID 302, 172.31.19.187, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 63.0 in stage 7.0 (TID 278) in 13622 ms on 172.31.19.187 (64/96)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Starting task 88.0 in stage 7.0 (TID 303, 172.31.19.180, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:55 INFO scheduler.TaskSetManager: Finished task 62.0 in stage 7.0 (TID 277) in 13872 ms on 172.31.19.180 (65/96)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Starting task 89.0 in stage 7.0 (TID 304, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Finished task 65.0 in stage 7.0 (TID 280) in 13832 ms on 172.31.19.181 (66/96)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Starting task 90.0 in stage 7.0 (TID 305, 172.31.19.181, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Finished task 66.0 in stage 7.0 (TID 281) in 13821 ms on 172.31.19.181 (67/96)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Finished task 69.0 in stage 7.0 (TID 284) in 13639 ms on 172.31.19.190 (68/96)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Starting task 91.0 in stage 7.0 (TID 306, 172.31.19.190, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Starting task 92.0 in stage 7.0 (TID 307, 172.31.19.189, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Finished task 68.0 in stage 7.0 (TID 283) in 14195 ms on 172.31.19.189 (69/96)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Starting task 93.0 in stage 7.0 (TID 308, 172.31.19.188, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:56 INFO scheduler.TaskSetManager: Finished task 67.0 in stage 7.0 (TID 282) in 14348 ms on 172.31.19.188 (70/96)
+15/11/02 10:24:59 INFO scheduler.TaskSetManager: Starting task 94.0 in stage 7.0 (TID 309, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:59 INFO scheduler.TaskSetManager: Finished task 70.0 in stage 7.0 (TID 285) in 14769 ms on 172.31.19.182 (71/96)
+15/11/02 10:24:59 INFO scheduler.TaskSetManager: Starting task 95.0 in stage 7.0 (TID 310, 172.31.19.182, PROCESS_LOCAL, 1957 bytes)
+15/11/02 10:24:59 INFO scheduler.TaskSetManager: Finished task 71.0 in stage 7.0 (TID 286) in 14961 ms on 172.31.19.182 (72/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 74.0 in stage 7.0 (TID 289) in 13221 ms on 172.31.19.186 (73/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 73.0 in stage 7.0 (TID 288) in 13553 ms on 172.31.19.179 (74/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 72.0 in stage 7.0 (TID 287) in 13773 ms on 172.31.19.183 (75/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 75.0 in stage 7.0 (TID 290) in 13390 ms on 172.31.19.186 (76/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 76.0 in stage 7.0 (TID 291) in 13485 ms on 172.31.19.179 (77/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 77.0 in stage 7.0 (TID 292) in 13594 ms on 172.31.19.189 (78/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 80.0 in stage 7.0 (TID 295) in 13454 ms on 172.31.19.185 (79/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 78.0 in stage 7.0 (TID 293) in 13618 ms on 172.31.19.184 (80/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 84.0 in stage 7.0 (TID 299) in 13343 ms on 172.31.19.184 (81/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 83.0 in stage 7.0 (TID 298) in 13423 ms on 172.31.19.183 (82/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 81.0 in stage 7.0 (TID 296) in 13588 ms on 172.31.19.188 (83/96)
+15/11/02 10:25:08 INFO scheduler.TaskSetManager: Finished task 82.0 in stage 7.0 (TID 297) in 13546 ms on 172.31.19.190 (84/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 85.0 in stage 7.0 (TID 300) in 13579 ms on 172.31.19.187 (85/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 86.0 in stage 7.0 (TID 301) in 13414 ms on 172.31.19.185 (86/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 79.0 in stage 7.0 (TID 294) in 14045 ms on 172.31.19.180 (87/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 88.0 in stage 7.0 (TID 303) in 13475 ms on 172.31.19.180 (88/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 87.0 in stage 7.0 (TID 302) in 13561 ms on 172.31.19.187 (89/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 91.0 in stage 7.0 (TID 306) in 13390 ms on 172.31.19.190 (90/96)
+15/11/02 10:25:09 INFO scheduler.TaskSetManager: Finished task 89.0 in stage 7.0 (TID 304) in 13751 ms on 172.31.19.181 (91/96)
+15/11/02 10:25:10 INFO scheduler.TaskSetManager: Finished task 90.0 in stage 7.0 (TID 305) in 13870 ms on 172.31.19.181 (92/96)
+15/11/02 10:25:10 INFO scheduler.TaskSetManager: Finished task 92.0 in stage 7.0 (TID 307) in 13573 ms on 172.31.19.189 (93/96)
+15/11/02 10:25:10 INFO scheduler.TaskSetManager: Finished task 93.0 in stage 7.0 (TID 308) in 13835 ms on 172.31.19.188 (94/96)
+15/11/02 10:25:13 INFO scheduler.TaskSetManager: Finished task 94.0 in stage 7.0 (TID 309) in 14520 ms on 172.31.19.182 (95/96)
+15/11/02 10:25:14 INFO scheduler.TaskSetManager: Finished task 95.0 in stage 7.0 (TID 310) in 14575 ms on 172.31.19.182 (96/96)
+15/11/02 10:25:14 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: ShuffleMapStage 7 (repartition at NativeMethodAccessorImpl.java:-2) finished in 60.062 s
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: looking for newly runnable stages
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: running: Set()
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: waiting: Set(ResultStage 8)
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: failed: Set()
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: Missing parents for ResultStage 8: List()
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: Submitting ResultStage 8 (MapPartitionsRDD[19] at saveAsTextFile at NativeMethodAccessorImpl.java:-2), which is now runnable
+15/11/02 10:25:14 INFO storage.MemoryStore: ensureFreeSpace(29064) called with curMem=92780, maxMem=556038881
+15/11/02 10:25:14 INFO storage.MemoryStore: Block broadcast_6 stored as values in memory (estimated size 28.4 KB, free 530.2 MB)
+15/11/02 10:25:14 INFO storage.MemoryStore: ensureFreeSpace(10024) called with curMem=121844, maxMem=556038881
+15/11/02 10:25:14 INFO storage.MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 9.8 KB, free 530.2 MB)
+15/11/02 10:25:14 INFO storage.BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.31.30.136:42792 (size: 9.8 KB, free: 530.3 MB)
+15/11/02 10:25:14 INFO spark.SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:861
+15/11/02 10:25:14 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 8 (MapPartitionsRDD[19] at saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+15/11/02 10:25:14 INFO scheduler.TaskSchedulerImpl: Adding task set 8.0 with 1 tasks
+15/11/02 10:25:14 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 8.0 (TID 311, 172.31.19.185, PROCESS_LOCAL, 2237 bytes)
+15/11/02 10:25:14 INFO storage.BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.31.19.185:60084 (size: 9.8 KB, free: 2.6 GB)
+15/11/02 10:25:14 INFO spark.MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 2 to 172.31.19.185:33586
+15/11/02 10:25:14 INFO spark.MapOutputTrackerMaster: Size of output statuses for shuffle 2 is 421 bytes
+15/11/02 10:26:13 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 8.0 (TID 311) in 59249 ms on 172.31.19.185 (1/1)
+15/11/02 10:26:13 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 8.0, whose tasks have all completed, from pool 
+15/11/02 10:26:13 INFO scheduler.DAGScheduler: ResultStage 8 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) finished in 59.250 s
+15/11/02 10:26:13 INFO scheduler.DAGScheduler: Job 2 finished: saveAsTextFile at NativeMethodAccessorImpl.java:-2, took 119.384863 s
+15/11/02 10:26:13 INFO spark.SparkContext: Invoking stop() from shutdown hook
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/11/02 10:26:13 INFO handler.ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/11/02 10:26:13 INFO ui.SparkUI: Stopped Spark web UI at http://ec2-52-27-12-221.us-west-2.compute.amazonaws.com:4042
+15/11/02 10:26:13 INFO scheduler.DAGScheduler: Stopping DAGScheduler
+15/11/02 10:26:13 INFO cluster.SparkDeploySchedulerBackend: Shutting down all executors
+15/11/02 10:26:13 INFO cluster.SparkDeploySchedulerBackend: Asking each executor to shut down
+15/11/02 10:26:13 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+15/11/02 10:26:13 INFO storage.MemoryStore: MemoryStore cleared
+15/11/02 10:26:13 INFO storage.BlockManager: BlockManager stopped
+15/11/02 10:26:13 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+15/11/02 10:26:13 INFO spark.SparkContext: Successfully stopped SparkContext
+15/11/02 10:26:13 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+15/11/02 10:26:13 INFO util.ShutdownHookManager: Shutdown hook called
+15/11/02 10:26:13 INFO remote.RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/11/02 10:26:13 INFO util.ShutdownHookManager: Deleting directory /mnt/spark/spark-baf03b91-f83c-4538-b541-c0939c6b13a3/pyspark-4768c889-002c-4875-b3ae-bd4bf3220351
+15/11/02 10:26:13 INFO util.ShutdownHookManager: Deleting directory /mnt/spark/spark-baf03b91-f83c-4538-b541-c0939c6b13a3
+15/11/02 10:26:13 INFO util.ShutdownHookManager: Deleting directory /mnt2/spark/spark-edc3b5e2-573d-4cd1-bd38-14f8dd43d515
+15/11/02 10:26:13 INFO remote.RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.

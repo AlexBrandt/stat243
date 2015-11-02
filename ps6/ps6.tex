@@ -1,0 +1,624 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+\title{Problem Set 6}
+\author{Alexander Brandt\\SID: 24092167}
+\date{October 19 2015}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\maketitle
+
+Friendly Collaborators: Milos Atz, Alex Ojala.  Most of our discussion centered around RSQLite and Spark syntax.  Though I did convince some new folks to try CyberDuck.
+
+\section{}
+
+The file takes almost 40 minutes to generate on an xl.large instance, and baloons from 1.7 Gb to about 18 Gb.  The code to generate is detailed in the main chunk. \\
+
+\begin{lstlisting}[language=bash,caption={ls results}]
+-rw-r--r--  1 ubuntu ubuntu  18G Nov  2 12:14 FlightDatabase.sqlite
+\end{lstlisting}
+
+\section{}
+
+\subsection{}
+
+The filtering step (detailed in the main code, below) is pretty much the same for both steps: it consists of removing NA's, and in the case of spark, getting rid of header lines from the CSV.  Both are easily accomplished with a few lines to remove the offending files.  In the case of R, we tag each NA as a numeric code (0.1234) before deleting from the database.
+
+\subsection{}
+
+The code for Spark and PySpark is largely modified from what Chris gave us in Unit 7.  Instead of computing a "median" for the time delay, we instead bin the times, then map the key/tuple to a string and write it to a file in the hadoop filesystem.  By and large, the SPARK method is incredibly faster (all operations can be performed within a few minutes, vs. the arduously long loading times needed by R).  For Spark, the output has been slightly modified to highlight the runtimes, without the verbosity.
+
+For SPARK/PySPARK:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+import time
+from operator import add
+import numpy as np
+from pyspark import SparkContext
+
+sc = \hlkwd{SparkContext}()
+
+print \hlstr{"Read in start/stop times..."}
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+lines = \hlkwd{sc.textFile}(\hlstr{'/data/airline'})
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+\hlcom{# particularly for in-class demo - good to repartition the 3 files to more p}
+lines = \hlkwd{lines.repartition}(96)\hlkwd{.cache}()
+
+numLines = \hlkwd{lines.count}()
+
+\hlcom{# mapper}
+def \hlkwd{computeKeyValue}(line):
+    vals = \hlkwd{line.split}(\hlstr{','})
+    if vals[4] is not \hlstr{'NA'}:
+        vals[4] = \hlkwd{str}(vals[4])\hlkwd{.zfill}(4)[0:2]
+    time_delay = vals[15]
+
+    \hlkwd{return}(\hlstr{"-"}\hlkwd{.join}([\hlkwd{str}(vals[8]), \hlkwd{str}(vals[16]), 
+                     \hlkwd{str}(vals[17]), \hlkwd{str}(vals[1]),\hlkwd{str}(vals[3]), 
+                     \hlkwd{str}(vals[4])]),[vals[15]])
+
+def \hlkwd{binFun}(input):
+    c30 = 0
+    c60 = 0
+    c120 = 0
+    t = 0
+    for i in input[1]:
+        if \hlkwd{int}(i) > 120:
+            c120 += 1
+        if \hlkwd{int}(i) > 60:
+            c60 += 1
+        if \hlkwd{int}(i) > 30:
+            c30 += 1
+        t += 1
+    \hlkwd{return}((input[0],( c30, c60, c120, t)))
+
+lines = \hlkwd{lines.filter}(lambda line: \hlkwd{line.split}(\hlstr{','})[15] != \hlstr{"NA"} 
+                     and \hlkwd{line.split}(\hlstr{','})[15] != \hlstr{"DepDelay"})
+
+def \hlkwd{printable}(input):
+    vals = input[0]\hlkwd{.split}(\hlstr{'-'})
+    c30  = input[1][0]
+    c60  = input[1][1]
+    c120 = input[1][2]
+    t    = input[1][3]
+
+    return \hlstr{"%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%f"} % (\hlkwd{str}(vals[0]), \hlkwd{str}(vals[1]), 
+    \hlkwd{str}(vals[2]), \hlkwd{str}(vals[3]), \hlkwd{str}(vals[4]), 
+    \hlkwd{str}(vals[5]), \hlkwd{str}(c30), \hlkwd{str}(c60), \hlkwd{str}(c120), \hlkwd{str}(t), \hlkwd{float}(c30)/\hlkwd{float}(t))
+print \hlstr{"Query start/stop times..."}
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+output = \hlkwd{lines.map}(computeKeyValue)\hlkwd{.reduceByKey}(add)
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+
+
+\hlcom{# print output.collect()[0:10]}
+
+print \hlstr{"Delay binning start/stop times..."}
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+myResults = \hlkwd{output.map}(binFun)
+print \hlkwd{time.strftime}(\hlstr{"%H:%M:%S"})
+\hlkwd{myResults.map}(printable)\hlkwd{.repartition}(1)\hlkwd{.saveAsTextFile}(\hlstr{'/data/airline_processed'})
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Output:
+
+\begin{lstlisting}[language=bash,caption={ls results}]
+15/11/02 10:15:47 INFO spark.SparkContext: Running Spark version 1.5.1
+15/11/02 10:15:48 WARN spark.SparkConf: 
+SPARK_WORKER_INSTANCES was detected (set to '1').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with --num-executors to specify the number of executors
+ - Or set SPARK_EXECUTOR_INSTANCES
+ - spark.executor.instances to configure the number of instances in the spark config.
+        
+15/11/02 10:15:48 INFO spark.SecurityManager: Changing view acls to: root
+15/11/02 10:15:48 INFO spark.SecurityManager: Changing modify acls to: root
+15/11/02 10:15:48 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(root); users with modify permissions: Set(root)
+15/11/02 10:15:49 INFO slf4j.Slf4jLogger: Slf4jLogger started
+15/11/02 10:15:49 INFO Remoting: Starting remoting
+15/11/02 10:15:49 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.30.136:41202]
+15/11/02 10:15:49 INFO util.Utils: Successfully started service 'sparkDriver' on port 41202.
+15/11/02 10:15:49 INFO spark.SparkEnv: Registering MapOutputTracker
+15/11/02 10:15:49 INFO spark.SparkEnv: Registering BlockManagerMaster
+[...]
+15/11/02 10:26:13 INFO remote.RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+
+\end{lstlisting}
+
+And if you wanted to see a few lines from the built file:
+
+\begin{lstlisting}[language=bash,caption={ls results}]
+Alexanders-MBP:airline_processed Alex$ head part-00000 
+DL,JFK,ORD,10,6,18,2,0,0,24,0.083333
+YV,CLT,GSO,1,7,00,1,1,1,1,1.000000
+AA,HDN,DFW,3,7,13,2,0,0,74,0.027027
+OH,JFK,DTW,5,7,19,1,1,0,9,0.111111
+OO,ICT,DEN,2,5,14,1,1,0,1,1.000000
+AA,DFW,ATL,9,5,12,4,3,0,90,0.044444
+EV,ATL,SHV,10,2,13,0,0,0,3,0.000000
+US,SFO,PHL,1,6,22,0,0,0,17,0.000000
+HP,LAS,MIA,1,3,22,0,0,0,1,0.000000
+AS,SEA,GEG,9,5,23,2,1,0,32,0.062500
+\end{lstlisting}
+
+For R/RSqlite:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{years} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwc{from}\hlstd{=}\hlnum{1987}\hlstd{,} \hlkwc{to}\hlstd{=}\hlnum{2008}\hlstd{)}
+\hlstd{years_strings} \hlkwb{<-} \hlkwd{sapply}\hlstd{(years,toString)}
+\hlstd{fns} \hlkwb{<-} \hlkwd{sapply}\hlstd{(years_strings, paste,} \hlkwc{sep}\hlstd{=}\hlstr{""}\hlstd{,} \hlstr{".csv.bz2"}\hlstd{)}
+
+\hlcom{# install.packages("RSQLite")}
+\hlkwd{library}\hlstd{(}\hlstr{"RSQLite"}\hlstd{)}
+\hlcom{# install.packages("str_pad")}
+\hlkwd{library}\hlstd{(}\hlstr{"stringr"}\hlstd{)}
+\hlstd{my_path} \hlkwb{<-} \hlstr{"~/"}
+\hlkwd{setwd}\hlstd{(my_path)}
+
+\hlstd{database_filename} \hlkwb{=} \hlstr{"FlightDatabase.sqlite"}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlkwd{seq}\hlstd{(}\hlkwd{length}\hlstd{(fns)))}
+\hlstd{\{}
+  \hlkwd{print}\hlstd{(fns[[i]])}
+  \hlstd{my_bz} \hlkwb{<-} \hlkwd{bzfile}\hlstd{(fns[[i]])}
+  \hlstd{my_csv} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(my_bz,}\hlkwc{header}\hlstd{=}\hlnum{TRUE}\hlstd{)}
+
+  \hlstd{my_csv[}\hlkwd{is.na}\hlstd{(my_csv)]} \hlkwb{<-} \hlnum{0.1234}
+  \hlstd{my_csv}\hlopt{$}\hlstd{DepTime} \hlkwb{<-} \hlkwd{substr}\hlstd{(}\hlkwd{str_pad}\hlstd{(my_csv}\hlopt{$}\hlstd{DepTime,} \hlnum{4}\hlstd{,} \hlkwc{pad}\hlstd{=}\hlstr{"0"}\hlstd{),} \hlnum{1}\hlstd{,} \hlnum{2}\hlstd{)}
+
+  \hlstd{drv} \hlkwb{<-} \hlkwd{dbDriver}\hlstd{(}\hlstr{"SQLite"}\hlstd{)}
+  \hlstd{db} \hlkwb{<-} \hlkwd{dbConnect}\hlstd{(drv,} \hlkwc{dbname} \hlstd{= database_filename)}
+
+  \hlkwd{dbWriteTable}\hlstd{(}\hlkwc{conn} \hlstd{= db,} \hlkwc{name} \hlstd{=} \hlstr{"flight_info"}\hlstd{,}
+             \hlkwc{value} \hlstd{= my_csv,} \hlkwc{row.names} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{append} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlstd{\}}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+
+\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"delete from flight_info where DepDelay==0.1234"}\hlstd{)}
+\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"delete from flight_info where DepTime is '0.'"}\hlstd{)}
+
+\hlcom{# 1a)}
+
+\hlkwd{file.info}\hlstd{(database_filename)}
+
+\hlcom{# 2b)}
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{x} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+
+\hlstd{z} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 180 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 180 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+
+\hlkwd{head}\hlstd{(x,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\hlkwd{head}\hlstd{(y,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\hlkwd{head}\hlstd{(z,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{lstlisting}[language=bash,caption={Timing for the loading, initial (non-indexed) query}]
+> proc.time() - ptm
+    user   system  elapsed 
+3041.288   64.808 3124.991
+
+> proc.time() - ptm
+    user   system  elapsed 
+1846.000  141.804 2270.214
+
+> head(x,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         1      08             1
+2             9E    ABE  DTW     1         1      14             1
+3             9E    ABE  DTW     1         2      18             1
+4             9E    ABE  DTW     1         3      14             1
+5             9E    ABE  DTW     1         3      18             1
+6             9E    ABE  DTW     1         5      17             1
+7             9E    ABE  DTW     1         5      23             1
+8             9E    ABE  DTW     1         7      14             1
+9             9E    ABE  DTW     2         2      07             1
+10            9E    ABE  DTW     2         2      08             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+> head(y,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         1      08             1
+2             9E    ABE  DTW     1         1      14             1
+3             9E    ABE  DTW     1         2      18             1
+4             9E    ABE  DTW     1         3      14             1
+5             9E    ABE  DTW     1         3      18             1
+6             9E    ABE  DTW     1         5      23             1
+7             9E    ABE  DTW     1         7      14             1
+8             9E    ABE  DTW     2         2      08             1
+9             9E    ABE  DTW     2         2      15             1
+10            9E    ABE  DTW     2         7      17             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+> head(z,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         3      18             1
+2             9E    ABE  DTW     1         5      23             1
+3             9E    ABE  DTW     2         2      15             1
+4             9E    ABE  DTW     6         1      10             1
+5             9E    ABE  DTW     6         2      21             1
+6             9E    ABE  DTW     9         7      20             1
+7             9E    ABE  DTW    12         1      20             1
+8             9E    ABE  DTW    12         3      11             1
+9             9E    ABE  DTW    12         5      21             1
+10            9E    ABE  DTW    12         7      15             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+\end{lstlisting}
+
+\subsection{}
+
+We perform the same calcuation, just using python instead of R.  It gives the right answer ONLY if the floating point is cast first to Digit.  If the code chunk is run ``as is'' from the problem statement, it sums to 1.
+
+\subsection{}
+
+We add a index, which speeds up our calculation precipitously!  Note, I ran this in the middle of the night, and I think the process got hung in an odd way, but the user and system time were much faster.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"create index delay_index on flight_info
+            (UniqueCarrier, Origin, Dest, Month, 
+            DayOfWeek, DepTime)"}\hlstd{)}
+\hlcom{# dbSendQuery(db, "drop index delay_index")}
+
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{x} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+
+\hlstd{y} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) 
+                       as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+
+\hlstd{z} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db,} \hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > 180 THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > 180 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
+
+> proc.time() - ptm
+     user    system   elapsed 
+  832.760   139.484 12617.140
+
+\end{lstlisting}
+
+\subsection{}
+
+Using R, we take our object generated by RSQLite and then subset based on flights with at least 150 entries.  Then we view the top 10 for each of the 30, 90, 180 minute delays, respectively.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# 2e)}
+
+\hlstd{xb} \hlkwb{<-} \hlkwd{subset}\hlstd{(x, TotalFlightCounts} \hlopt{>} \hlnum{149}\hlstd{)}
+\hlstd{yb} \hlkwb{<-} \hlkwd{subset}\hlstd{(y, TotalFlightCounts} \hlopt{>} \hlnum{149}\hlstd{)}
+\hlstd{zb} \hlkwb{<-} \hlkwd{subset}\hlstd{(z, TotalFlightCounts} \hlopt{>} \hlnum{149}\hlstd{)}
+
+\hlkwd{head}\hlstd{(xb,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\hlkwd{head}\hlstd{(yb,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\hlkwd{head}\hlstd{(zb,}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
+> head(xb,n=10)
+        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1638876            WN    HOU  DAL     6         5      18            36
+1666191            WN    HOU  DAL     5         4      21            31
+1666878            WN    HOU  DAL     2         5      19            26
+1666978            WN    HOU  DAL    10         5      18            33
+1732659            WN    HOU  DAL     5         4      19            29
+1744973            WN    HOU  DAL    10         5      20            28
+1745327            WN    HOU  DAL     6         4      19            28
+1749951            WN    DAL  HOU     2         5      21            26
+1761811            WN    DAL  HOU     4         5      21            25
+1761812            UA    LAX  SFO    10         5      12            23
+        TotalFlightCounts DelayFraction
+1638876               189     0.1904762
+1666191               180     0.1722222
+1666878               153     0.1699346
+1666978               195     0.1692308
+1732659               174     0.1666667
+1744973               175     0.1600000
+1745327               177     0.1581921
+1749951               168     0.1547619
+1761811               163     0.1533742
+1761812               150     0.1533333
+> head(yb,n=10)
+        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1191237            WN    DAL  HOU     6         5      20            16
+1221851            WN    HOU  DAL     6         4      19            17
+1253250            WN    HOU  DAL     7         7      19            14
+1253508            WN    HOU  DAL     5         4      21            16
+1257823            WN    HOU  DAL     5         4      19            15
+1257836            WN    HOU  DAL     2         5      18            14
+1258619            WN    HOU  DAL    10         5      20            15
+1258684            WN    HOU  DAL     6         5      21            14
+1283348            UA    LAX  SFO    11         7      17            13
+1287479            WN    DAL  HOU     6         4      21            12
+        TotalFlightCounts DelayFraction
+1191237               158    0.10126582
+1221851               177    0.09604520
+1253250               157    0.08917197
+1253508               180    0.08888889
+1257823               174    0.08620690
+1257836               163    0.08588957
+1258619               175    0.08571429
+1258684               164    0.08536585
+1283348               157    0.08280255
+1287479               150    0.08000000
+> head(zb,n=10)
+       UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+378918            WN    HOU  DAL     7         7      19             5
+383602            WN    HOU  DAL     4         5      20             5
+397917            WN    HOU  DAL     4         2      21             4
+399799            WN    HOU  DAL     7         3      20             4
+403164            WN    DAL  HOU     5         4      19             4
+403202            WN    HOU  DAL    10         5      20             4
+413930            WN    DAL  HOU     6         2      21             3
+414237            AA    ORD  DFW    12         4      18             3
+415160            UA    SFO  LAX    10         7      16             3
+415161            UA    SFO  LAX    12         7      16             3
+       TotalFlightCounts DelayFraction
+378918               157    0.03184713
+383602               167    0.02994012
+397917               161    0.02484472
+399799               166    0.02409639
+403164               173    0.02312139
+403202               175    0.02285714
+413930               150    0.02000000
+414237               153    0.01960784
+415160               153    0.01960784
+415161               153    0.01960784
+\end{lstlisting}
+
+\section{}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# 3)}
+\hlcom{# install.packages("parallel")}
+\hlkwd{library}\hlstd{(}\hlstr{"parallel"}\hlstd{)}
+
+\hlstd{getDelays} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{,}\hlkwc{s}\hlstd{) \{}
+  \hlcom{# print(x)}
+  \hlstd{s} \hlkwb{<-} \hlkwd{toString}\hlstd{(s)}
+  \hlcom{# print(s)}
+  \hlstd{drv} \hlkwb{<-} \hlkwd{dbDriver}\hlstd{(}\hlstr{"SQLite"}\hlstd{)}
+  \hlstd{db} \hlkwb{<-} \hlkwd{dbConnect}\hlstd{(drv,} \hlkwc{dbname} \hlstd{=} \hlstr{"Big_v4.sqlite"}\hlstd{)}
+  \hlstd{query} \hlkwb{<-} \hlkwd{sprintf}\hlstd{(}\hlstr{"select UniqueCarrier, Origin, 
+                       Dest, Month, DayOfWeek, 
+                       DepTime,
+                       SUM(CASE WHEN DepDelay > %i THEN 1 ELSE 0 END) as DelayedCounts, 
+                       Count(*) as TotalFlightCounts,
+                       CAST(SUM(CASE WHEN DepDelay > %i THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) 
+                       as DelayFraction
+                       from flight_info where Origin like '%s%%'  group by
+                       UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
+                       order by DelayFraction desc"}\hlstd{, x, x, s)}
+  \hlstd{tmp} \hlkwb{<-} \hlkwd{fetch}\hlstd{(}\hlkwd{dbSendQuery}\hlstd{(db, query),}\hlkwc{n}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{)}
+  \hlkwd{return}\hlstd{(tmp)}
+\hlstd{\}}
+
+\hlstd{alphabet} \hlkwb{=} \hlkwd{c}\hlstd{(}\hlstr{"A"}\hlstd{,}\hlstr{"B"}\hlstd{,}\hlstr{"C"}\hlstd{,}\hlstr{"D"}\hlstd{,}\hlstr{"E"}\hlstd{,}\hlstr{"F"}\hlstd{,}\hlstr{"G"}\hlstd{,}\hlstr{"H"}\hlstd{,}\hlstr{"I"}\hlstd{,}\hlstr{"J"}\hlstd{,}\hlstr{"K"}\hlstd{,}\hlstr{"L"}\hlstd{,}
+             \hlstr{"M"}\hlstd{,}\hlstr{"N"}\hlstd{,}\hlstr{"O"}\hlstd{,}\hlstr{"P"}\hlstd{,}\hlstr{"Q"}\hlstd{,}\hlstr{"R"}\hlstd{,}\hlstr{"S"}\hlstd{,}\hlstr{"T"}\hlstd{,}\hlstr{"U"}\hlstd{,}\hlstr{"V"}\hlstd{,}\hlstr{"W"}\hlstd{,}\hlstr{"X"}\hlstd{,}
+             \hlstr{"Y"}\hlstd{,}\hlstr{"Z"}\hlstd{)}
+\hlstd{times} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{60}\hlstd{,} \hlnum{90}\hlstd{,} \hlnum{180}\hlstd{)}
+\hlstd{tlc} \hlkwb{<-} \hlkwd{expand.grid}\hlstd{(times,alphabet)}
+\hlkwd{names}\hlstd{(tlc)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"x"}\hlstd{,}\hlstr{"s"}\hlstd{)}
+
+\hlstd{ptm} \hlkwb{<-} \hlkwd{proc.time}\hlstd{()}
+\hlstd{question_3} \hlkwb{<-} \hlkwd{mcmapply}\hlstd{(getDelays, tlc}\hlopt{$}\hlstd{x, tlc}\hlopt{$}\hlstd{s,} \hlkwc{mc.cores}\hlstd{=}\hlnum{4}\hlstd{)}
+\hlkwd{proc.time}\hlstd{()} \hlopt{-} \hlstd{ptm}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
+> proc.time() - ptm
+   user  system elapsed 
+245.192  22.508 375.559 
+\end{lstlisting}
+
+\section{}
+
+The preprocessing I used here was basically derived from my solution in ps2, just generalized to work with more than one bzip2 file.  The code and a wrapper script is shown below below.  The file almost takes about 10 minutes, which is m3.xlarge instance.  It is probably worth it, for the case of R, because reading in the files can take a very long time.
+
+\begin{lstlisting}[language=bash,caption={all\_preprocess.sh}]
+myyear=$1
+# Extract the header so we can find our columns of interest
+bzcat $myyear.csv.bz2 | head -n 1 > $myyear.header.txt
+# We will use the file line coordinates as the proxy for index columns
+sed -e $'s/,/\\\n/g' $myyear.header.txt > $myyear.header.nsv
+# Our desired headers
+for i in "UniqueCarrier" "Origin" "Dest" "Month" "DayOfWeek" "DepTime" "DepDelay"
+do
+    x=`grep -n ^$i$ $myyear.header.nsv | cut -d':' -f 1`
+    v="$v $x"
+done
+echo $v
+
+# Now $v contains our columns of interest, which we just need
+# to separate by commas to use with cut. A sed command will
+# accomplish this with ease.
+
+
+bzcat $myyear.csv.bz2 | \
+     cut -d, -f`echo $v | \
+     sed 's/ /,/g'` | bzip2 > $myyear.pp.csv.bz2
+\end{lstlisting}
+
+This script is called with:
+
+\begin{lstlisting}[language=bash,caption={preprocess.sh}]
+date
+for f in `seq 1987 1 2008`
+do
+    echo $f
+    ~/preprocess.sh $f
+done
+date
+\end{lstlisting}
+
+And the result:
+
+\begin{lstlisting}[language=bash,caption={Timing for all\_preprocess.sh}]
+Mon Nov  2 08:25:32 UTC 2015
+Mon Nov  2 08:35:15 UTC 2015
+\end{lstlisting}
+
+\end{document}

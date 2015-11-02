@@ -1,0 +1,353 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> years <- seq(from=1987, to=2008)
+> years_strings <- sapply(years,toString)
+> fns <- sapply(years_strings, paste, sep="", ".csv.bz2")
+> 
+> # install.packages("RSQLite")
+> library("RSQLite")
+Loading required package: DBI
+> # install.packages("str_pad")
+> library("stringr")
+> my_path <- "~/"
+> setwd(my_path)
+> 
+> database_filename = "Big_v5.sqlite"
+> ptm <- proc.time()
+> for (i in seq(length(fns)))
++ {
++   print(fns[[i]])
++   my_bz <- bzfile(fns[[i]])
++   my_csv <- read.csv(my_bz,header=TRUE)
++ 
++   my_csv[is.na(my_csv)] <- 0.1234
++   my_csv$DepTime <- substr(str_pad(my_csv$DepTime, 4, pad="0"), 1, 2)
++ 
++   drv <- dbDriver("SQLite")
++   db <- dbConnect(drv, dbname = database_filename)
++ 
++   dbWriteTable(conn = db, name = "flight_info", 
++              value = my_csv, row.names = FALSE, append = TRUE)
++ }
+[1] "1987.csv.bz2"
+[1] "1988.csv.bz2"
+[1] "1989.csv.bz2"
+[1] "1990.csv.bz2"
+[1] "1991.csv.bz2"
+[1] "1992.csv.bz2"
+[1] "1993.csv.bz2"
+[1] "1994.csv.bz2"
+[1] "1995.csv.bz2"
+[1] "1996.csv.bz2"
+[1] "1997.csv.bz2"
+[1] "1998.csv.bz2"
+[1] "1999.csv.bz2"
+[1] "2000.csv.bz2"
+[1] "2001.csv.bz2"
+[1] "2002.csv.bz2"
+[1] "2003.csv.bz2"
+[1] "2004.csv.bz2"
+[1] "2005.csv.bz2"
+[1] "2006.csv.bz2"
+[1] "2007.csv.bz2"
+[1] "2008.csv.bz2"
+Warning message:
+In `[<-.factor`(`*tmp*`, thisvar, value = 0.1234) :
+  invalid factor level, NA generated
+> ptm - proc.time()
+     user    system   elapsed 
+-3041.288   -64.808 -3124.991 
+> dbSendQuery(db, "delete from flight_info where DepDelay==0.1234")
+<SQLiteResult>
+> dbSendQuery(db, "delete from flight_info where DepTime is '0.'")
+<SQLiteResult>
+> 
+> # 1a)
+> 
+> file.info(database_filename)
+                     size isdir mode               mtime               ctime
+Big_v5.sqlite 15907968000 FALSE  644 2015-11-02 11:21:48 2015-11-02 11:21:48
+                            atime  uid  gid  uname grname
+Big_v5.sqlite 2015-11-02 11:21:48 1000 1000 ubuntu ubuntu
+> 
+> # 2b)
+> ptm <- proc.time()
+> x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> y <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> 
+> z <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 180 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 180 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> proc.time() - ptm
+    user   system  elapsed 
+1846.000  141.804 2270.214 
+> 
+> head(x,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         1      08             1
+2             9E    ABE  DTW     1         1      14             1
+3             9E    ABE  DTW     1         2      18             1
+4             9E    ABE  DTW     1         3      14             1
+5             9E    ABE  DTW     1         3      18             1
+6             9E    ABE  DTW     1         5      17             1
+7             9E    ABE  DTW     1         5      23             1
+8             9E    ABE  DTW     1         7      14             1
+9             9E    ABE  DTW     2         2      07             1
+10            9E    ABE  DTW     2         2      08             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+> head(y,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         1      08             1
+2             9E    ABE  DTW     1         1      14             1
+3             9E    ABE  DTW     1         2      18             1
+4             9E    ABE  DTW     1         3      14             1
+5             9E    ABE  DTW     1         3      18             1
+6             9E    ABE  DTW     1         5      23             1
+7             9E    ABE  DTW     1         7      14             1
+8             9E    ABE  DTW     2         2      08             1
+9             9E    ABE  DTW     2         2      15             1
+10            9E    ABE  DTW     2         7      17             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+> head(z,n=10)
+   UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1             9E    ABE  DTW     1         3      18             1
+2             9E    ABE  DTW     1         5      23             1
+3             9E    ABE  DTW     2         2      15             1
+4             9E    ABE  DTW     6         1      10             1
+5             9E    ABE  DTW     6         2      21             1
+6             9E    ABE  DTW     9         7      20             1
+7             9E    ABE  DTW    12         1      20             1
+8             9E    ABE  DTW    12         3      11             1
+9             9E    ABE  DTW    12         5      21             1
+10            9E    ABE  DTW    12         7      15             1
+   TotalFlightCounts DelayFraction
+1                  1             1
+2                  1             1
+3                  1             1
+4                  1             1
+5                  1             1
+6                  1             1
+7                  1             1
+8                  1             1
+9                  1             1
+10                 1             1
+> # 2d)
+> 
+> dbSendQuery(db, "create index delay_index on flight_info
++             (UniqueCarrier, Origin, Dest, Month, 
++             DayOfWeek, DepTime)")
+<SQLiteResult>
+> # dbSendQuery(db, "drop index delay_index")
+> 
+> ptm <- proc.time()
+> x <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 60 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 60 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> 
+> y <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 90 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 90 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> 
+> z <- fetch(dbSendQuery(db, "select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > 180 THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > 180 THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc"),n=-1)
+> proc.time() - ptm
+     user    system   elapsed 
+  832.760   139.484 12617.140 
+> 
+> # 2e)
+> 
+> xb <- subset(x, TotalFlightCounts > 149)
+> yb <- subset(y, TotalFlightCounts > 149)
+> zb <- subset(z, TotalFlightCounts > 149)
+> 
+> head(xb,n=10)
+        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1638876            WN    HOU  DAL     6         5      18            36
+1666191            WN    HOU  DAL     5         4      21            31
+1666878            WN    HOU  DAL     2         5      19            26
+1666978            WN    HOU  DAL    10         5      18            33
+1732659            WN    HOU  DAL     5         4      19            29
+1744973            WN    HOU  DAL    10         5      20            28
+1745327            WN    HOU  DAL     6         4      19            28
+1749951            WN    DAL  HOU     2         5      21            26
+1761811            WN    DAL  HOU     4         5      21            25
+1761812            UA    LAX  SFO    10         5      12            23
+        TotalFlightCounts DelayFraction
+1638876               189     0.1904762
+1666191               180     0.1722222
+1666878               153     0.1699346
+1666978               195     0.1692308
+1732659               174     0.1666667
+1744973               175     0.1600000
+1745327               177     0.1581921
+1749951               168     0.1547619
+1761811               163     0.1533742
+1761812               150     0.1533333
+> head(yb,n=10)
+        UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+1191237            WN    DAL  HOU     6         5      20            16
+1221851            WN    HOU  DAL     6         4      19            17
+1253250            WN    HOU  DAL     7         7      19            14
+1253508            WN    HOU  DAL     5         4      21            16
+1257823            WN    HOU  DAL     5         4      19            15
+1257836            WN    HOU  DAL     2         5      18            14
+1258619            WN    HOU  DAL    10         5      20            15
+1258684            WN    HOU  DAL     6         5      21            14
+1283348            UA    LAX  SFO    11         7      17            13
+1287479            WN    DAL  HOU     6         4      21            12
+        TotalFlightCounts DelayFraction
+1191237               158    0.10126582
+1221851               177    0.09604520
+1253250               157    0.08917197
+1253508               180    0.08888889
+1257823               174    0.08620690
+1257836               163    0.08588957
+1258619               175    0.08571429
+1258684               164    0.08536585
+1283348               157    0.08280255
+1287479               150    0.08000000
+> head(zb,n=10)
+       UniqueCarrier Origin Dest Month DayOfWeek DepTime DelayedCounts
+378918            WN    HOU  DAL     7         7      19             5
+383602            WN    HOU  DAL     4         5      20             5
+397917            WN    HOU  DAL     4         2      21             4
+399799            WN    HOU  DAL     7         3      20             4
+403164            WN    DAL  HOU     5         4      19             4
+403202            WN    HOU  DAL    10         5      20             4
+413930            WN    DAL  HOU     6         2      21             3
+414237            AA    ORD  DFW    12         4      18             3
+415160            UA    SFO  LAX    10         7      16             3
+415161            UA    SFO  LAX    12         7      16             3
+       TotalFlightCounts DelayFraction
+378918               157    0.03184713
+383602               167    0.02994012
+397917               161    0.02484472
+399799               166    0.02409639
+403164               173    0.02312139
+403202               175    0.02285714
+413930               150    0.02000000
+414237               153    0.01960784
+415160               153    0.01960784
+415161               153    0.01960784
+> 
+> # 3)
+> # install.packages("parallel")
+> library("parallel")
+> 
+> getDelays <- function(x,s) {
++   # print(x)
++   s <- toString(s)
++   # print(s)
++   drv <- dbDriver("SQLite")
++   db <- dbConnect(drv, dbname = "Big_v4.sqlite")
++   query <- sprintf("select UniqueCarrier, Origin, 
++                        Dest, Month, DayOfWeek, 
++                        DepTime,
++                        SUM(CASE WHEN DepDelay > %i THEN 1 ELSE 0 END) as DelayedCounts, 
++                        Count(*) as TotalFlightCounts,
++                        CAST(SUM(CASE WHEN DepDelay > %i THEN 1.0 ELSE 0.0 END) AS FLOAT) / Count(*) as DelayFraction
++                        from flight_info where Origin like '%s%%'  group by
++                        UniqueCarrier, Origin, Dest, Month, DayOfWeek, DepTime
++                        order by DelayFraction desc", x, x, s)
++   tmp <- fetch(dbSendQuery(db, query),n=-1)
++   return(tmp)
++ }
+> 
+> alphabet = c("A","B","C","D","E","F","G","H","I","J","K","L",
++              "M","N","O","P","Q","R","S","T","U","V","W","X",
++              "Y","Z")
+> times <- c(60, 90, 180)
+> tlc <- expand.grid(times,alphabet)
+> names(tlc) <- c("x","s")
+> 
+> ptm <- proc.time()
+> question_3 <- mcmapply(getDelays, tlc$x, tlc$s, mc.cores=4)
+> proc.time() - ptm
+   user  system elapsed 
+245.192  22.508 375.559 
+> 
+> proc.time()
+    user   system  elapsed 
+ 6578.12   443.42 19879.27 
+Warning message:
+Closing open result set 
